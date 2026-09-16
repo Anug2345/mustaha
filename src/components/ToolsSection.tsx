@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { 
   FileSpreadsheet, 
   Palette, 
@@ -12,12 +12,44 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { TOOLS } from '../data/portfolioData';
+import { InteractiveTiltCard } from './InteractiveTiltCard';
 
 interface ToolProTip {
   percentage: number;
   tip: string;
   category: 'productivity' | 'pm' | 'scheduling';
 }
+
+const toolsGridVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const toolCardVariants: Variants = {
+  hidden: { opacity: 0, y: 30, scale: 0.94 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 260,
+      damping: 22,
+      mass: 0.8
+    }
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.9,
+    transition: { duration: 0.2 }
+  }
+};
 
 const TOOL_EXTRAS: Record<string, ToolProTip> = {
   'Google Workspace': {
@@ -183,10 +215,14 @@ export const ToolsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Cohesive Tools Grid with Animated Progress Bars and Interactive Stack Matching */}
+        {/* Cohesive Tools Grid with Staggered Spring Entry and Interactive 3D Tilt */}
         <motion.div 
           layout
-          className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={toolsGridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]"
         >
           <AnimatePresence mode="popLayout">
             {filteredTools.map((tool, index) => {
@@ -195,34 +231,31 @@ export const ToolsSection: React.FC = () => {
               const isTipOpen = expandedTipTool === tool.name;
 
               return (
-                <motion.div
+                <InteractiveTiltCard
                   layout
                   key={tool.name}
                   id={`tool-card-${tool.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  initial={{ opacity: 0, scale: 0.95, y: 25 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                  transition={{ 
-                    duration: 0.4, 
-                    delay: index * 0.06,
-                    layout: { duration: 0.3 }
-                  }}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  className={`bg-white rounded-2xl p-6 border transition-all duration-200 flex flex-col justify-between relative overflow-hidden ${
+                  variants={toolCardVariants}
+                  maxTilt={7}
+                  scale={1.03}
+                  className={`bg-white rounded-2xl p-6 border transition-colors duration-200 flex flex-col justify-between relative overflow-hidden ${
                     isInMyStack 
                       ? 'border-[#7C8F6A] shadow-md ring-1 ring-[#7C8F6A]/30' 
-                      : 'border-[#E2DFD8] shadow-2xs hover:shadow-md hover:border-[#7C8F6A]/50'
+                      : 'border-[#E2DFD8] shadow-2xs hover:shadow-xl hover:border-[#7C8F6A]/50'
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       {getToolIcon(tool.iconType)}
                       
-                      {/* Interactive "I Use This" button */}
-                      <button
+                      {/* Interactive "I Use This" tactile button */}
+                      <motion.button
                         type="button"
                         onClick={() => toggleStackItem(tool.name)}
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border transition-all cursor-pointer active:scale-95 ${
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.92 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border transition-colors cursor-pointer ${
                           isInMyStack
                             ? 'bg-[#556447] border-[#556447] text-white shadow-2xs'
                             : 'bg-[#F8F7F4] border-[#E2DFD8] text-[#4B5563] hover:border-[#7C8F6A]'
@@ -236,7 +269,7 @@ export const ToolsSection: React.FC = () => {
                         ) : (
                           <span>+ Match Tool</span>
                         )}
-                      </button>
+                      </motion.button>
                     </div>
 
                     <h3 className="text-lg font-bold text-[#1F2937]">
@@ -262,7 +295,7 @@ export const ToolsSection: React.FC = () => {
                           initial={{ width: 0 }}
                           whileInView={{ width: `${extra.percentage}%` }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
+                          transition={{ duration: 0.8, delay: index * 0.08, ease: 'easeOut' }}
                         />
                       </div>
                     </div>
@@ -295,18 +328,20 @@ export const ToolsSection: React.FC = () => {
                       {tool.proficiency}
                     </span>
 
-                    <button
+                    <motion.button
                       type="button"
                       onClick={() => setExpandedTipTool(isTipOpen ? null : tool.name)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.94 }}
                       className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#556447] hover:text-[#1F2937] p-1 rounded transition-colors cursor-pointer"
                     >
                       <span>{isTipOpen ? 'Close Tip' : 'Workflow Tip'}</span>
-                      <motion.span animate={{ rotate: isTipOpen ? 180 : 0 }}>
+                      <motion.span animate={{ rotate: isTipOpen ? 180 : 0 }} transition={{ type: 'spring', stiffness: 300, damping: 20 }}>
                         <ChevronDown className="w-3 h-3" />
                       </motion.span>
-                    </button>
+                    </motion.button>
                   </div>
-                </motion.div>
+                </InteractiveTiltCard>
               );
             })}
           </AnimatePresence>

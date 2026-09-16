@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { 
   ClipboardCheck, 
   Mail, 
@@ -13,10 +13,42 @@ import {
   Sparkles
 } from 'lucide-react';
 import { SERVICES } from '../data/portfolioData';
+import { InteractiveTiltCard } from './InteractiveTiltCard';
 
 interface ServicesProps {
   onSelectService: (serviceTitle: string) => void;
 }
+
+const servicesGridVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const serviceCardVariants: Variants = {
+  hidden: { opacity: 0, y: 32, scale: 0.94 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 260,
+      damping: 22,
+      mass: 0.8
+    }
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.9,
+    transition: { duration: 0.2 }
+  }
+};
 
 export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
   const [activeCategory, setActiveCategory] = useState<'all' | 'admin' | 'ops' | 'data'>('all');
@@ -137,10 +169,14 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
           </div>
         </div>
 
-        {/* 6 Dedicated Service Cards with Staggered Motion and Interactive Deliverable Toggles */}
+        {/* 6 Dedicated Service Cards with Staggered Spring Motion and Interactive 3D Tilt */}
         <motion.div 
           layout
-          className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={servicesGridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]"
         >
           <AnimatePresence mode="popLayout">
             {filteredServices.map((service, index) => {
@@ -148,20 +184,14 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
               const serviceSelectedCount = service.tasks.filter((_, idx) => selectedTasks[`${service.id}-${idx}`]).length;
 
               return (
-                <motion.div
+                <InteractiveTiltCard
                   layout
                   key={service.id}
                   id={`service-card-${service.id}`}
-                  initial={{ opacity: 0, scale: 0.95, y: 25 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                  transition={{ 
-                    duration: 0.4, 
-                    delay: index * 0.06,
-                    layout: { duration: 0.3 }
-                  }}
-                  whileHover={{ y: -6, scale: 1.015 }}
-                  className="group bg-white rounded-2xl p-7 border border-[#E2DFD8] shadow-2xs hover:shadow-md hover:border-[#7C8F6A] transition-all duration-200 flex flex-col justify-between relative overflow-hidden"
+                  variants={serviceCardVariants}
+                  maxTilt={6}
+                  scale={1.025}
+                  className="group bg-white rounded-2xl p-7 border border-[#E2DFD8] shadow-2xs hover:shadow-xl hover:border-[#7C8F6A] transition-colors duration-200 flex flex-col justify-between relative overflow-hidden"
                 >
                   <div>
                     {/* Card Header with Icon and Tag */}
@@ -238,12 +268,15 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
                     </div>
                   </div>
 
-                  {/* Action Button */}
+                  {/* Action Button with Tactile Feedback */}
                   <div className="mt-8 pt-5 border-t border-[#E2DFD8]/60">
-                    <button
+                    <motion.button
                       id={`select-service-${service.id}-btn`}
                       onClick={() => onSelectService(service.title)}
-                      className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#F8F7F4] hover:bg-[#1F2937] text-[#1F2937] hover:text-white border border-[#E2DFD8] hover:border-[#1F2937] text-xs font-semibold transition-all duration-200 cursor-pointer group/btn active:scale-98"
+                      whileHover={{ scale: 1.02, backgroundColor: '#1F2937', color: '#ffffff', borderColor: '#1F2937' }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#F8F7F4] text-[#1F2937] border border-[#E2DFD8] text-xs font-semibold transition-all duration-200 cursor-pointer group/btn"
                     >
                       <span>
                         {serviceSelectedCount > 0 
@@ -251,9 +284,9 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
                           : `Inquire for ${service.title}`}
                       </span>
                       <ArrowRight className="w-3.5 h-3.5 text-[#7C8F6A] group-hover/btn:text-white group-hover/btn:translate-x-0.5 transition-all" />
-                    </button>
+                    </motion.button>
                   </div>
-                </motion.div>
+                </InteractiveTiltCard>
               );
             })}
           </AnimatePresence>

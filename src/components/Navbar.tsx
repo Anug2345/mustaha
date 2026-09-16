@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Menu, X, Mail, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
@@ -94,14 +95,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate }) => 
 
           {/* Desktop Right Action */}
           <div className="hidden md:flex items-center gap-3">
-            <button
+            <motion.button
               id="nav-cta-btn"
               onClick={() => handleNavClick('contact')}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1F2937] hover:bg-[#7C8F6A] text-white text-sm font-semibold shadow-xs hover:shadow-sm transition-all duration-200 cursor-pointer active:scale-95"
+              whileHover={{ scale: 1.02, y: -1, backgroundColor: '#6B7D5A', boxShadow: '0 4px 12px rgba(85, 100, 71, 0.25)' }}
+              whileTap={{ scale: 0.96, y: 0 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1F2937] text-white text-sm font-semibold shadow-xs transition-colors cursor-pointer"
             >
               <span>Let's Work Together</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
+              <ArrowUpRight className="w-4 h-4 text-[#A3B899]" />
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}

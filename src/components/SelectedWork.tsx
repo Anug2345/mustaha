@@ -64,18 +64,25 @@ export const SelectedWork: React.FC = () => {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 85,
-    damping: 26,
+    stiffness: 75,
+    damping: 24,
     restDelta: 0.001
   });
 
-  // Layered subtle parallax transformations
-  const bgOrb1Y = useTransform(smoothProgress, [0, 1], [-50, 50]);
-  const bgOrb2Y = useTransform(smoothProgress, [0, 1], [40, -40]);
-  const headerY = useTransform(smoothProgress, [0, 1], [-12, 12]);
-  const colEvenY = useTransform(smoothProgress, [0, 1], [-18, 18]);
-  const colOddY = useTransform(smoothProgress, [0, 1], [18, -18]);
-  const watermarkShift = useTransform(smoothProgress, [0, 1], [-30, 30]);
+  // Layered subtle parallax depth transformations
+  // Layer 0: Deep background orbs & watermark
+  const bgOrb1Y = useTransform(smoothProgress, [0, 1], [-85, 85]);
+  const bgOrb2Y = useTransform(smoothProgress, [0, 1], [75, -75]);
+  const watermarkShift = useTransform(smoothProgress, [0, 1], [-60, 60]);
+  const watermarkScale = useTransform(smoothProgress, [0, 1], [0.96, 1.04]);
+
+  // Layer 1: Section Header & Category Tabs
+  const headerY = useTransform(smoothProgress, [0, 1], [-18, 18]);
+  const filterTabsY = useTransform(smoothProgress, [0, 1], [-8, 8]);
+
+  // Layer 2: Foreground Staggered Columns
+  const colEvenY = useTransform(smoothProgress, [0, 1], [-28, 28]);
+  const colOddY = useTransform(smoothProgress, [0, 1], [28, -28]);
 
   const getCategoryIcon = (category: string) => {
     if (category.includes('Project Management') || category.includes('Workflow')) {
@@ -129,8 +136,8 @@ export const SelectedWork: React.FC = () => {
           className="absolute -bottom-24 left-[-80px] w-96 h-96 bg-[#7C8F6A]/10 rounded-full blur-3xl"
         />
         <motion.div
-          style={{ y: watermarkShift }}
-          className="absolute top-1/2 right-10 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] text-8xl font-black text-[#1F2937] tracking-widest hidden xl:block uppercase"
+          style={{ y: watermarkShift, scale: watermarkScale }}
+          className="absolute top-1/2 right-10 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] text-8xl font-black text-[#1F2937] tracking-widest hidden xl:block uppercase will-change-transform"
         >
           ARTIFACTS
         </motion.div>
@@ -145,7 +152,7 @@ export const SelectedWork: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 will-change-transform"
         >
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] text-[#556447] text-xs font-bold tracking-wider uppercase mb-3">
@@ -168,8 +175,11 @@ export const SelectedWork: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Interactive Filter Tabs */}
-        <div className="mt-10 flex items-center justify-start sm:justify-center overflow-x-auto pb-2 scrollbar-none">
+        {/* Interactive Filter Tabs with Calibrated Velocity */}
+        <motion.div 
+          style={{ y: filterTabsY }}
+          className="mt-10 flex items-center justify-start sm:justify-center overflow-x-auto pb-2 scrollbar-none will-change-transform"
+        >
           <div className="inline-flex p-1 bg-white border border-[#E2DFD8] rounded-xl shadow-2xs">
             {[
               { id: 'all', label: 'All Artifacts (4)' },
@@ -195,12 +205,12 @@ export const SelectedWork: React.FC = () => {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Selected Work Grid with Layered Parallax Movement & Animated Layout */}
         <motion.div 
           layout
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 [perspective:1200px]"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
@@ -277,26 +287,32 @@ export const SelectedWork: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
+                  {/* Action Buttons with Tactile Feedback */}
                   <div className="mt-8 pt-5 border-t border-[#E2DFD8]/60 flex items-center justify-between gap-3">
-                    <a
+                    <motion.a
                       id={`open-project-link-${project.id}`}
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1F2937] hover:bg-[#7C8F6A] text-white text-xs sm:text-sm font-semibold transition-colors shadow-2xs"
+                      whileHover={{ scale: 1.03, y: -1, backgroundColor: '#6B7D5A', boxShadow: '0 4px 14px rgba(85, 100, 71, 0.25)' }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1F2937] text-white text-xs sm:text-sm font-semibold transition-colors shadow-2xs"
                     >
                       <span>Open Artifact</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#A3B899]" />
+                    </motion.a>
 
-                    <button
+                    <motion.button
                       id={`preview-details-btn-${project.id}`}
                       onClick={() => setActiveProjectModal(project)}
-                      className="px-4 py-2.5 rounded-xl bg-[#F8F7F4] hover:bg-[#E8EDE3] border border-[#E2DFD8] text-xs sm:text-sm font-semibold text-[#1F2937] transition-colors cursor-pointer active:scale-98"
+                      whileHover={{ scale: 1.02, y: -1, backgroundColor: '#E8EDE3', borderColor: '#7C8F6A' }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      className="px-4 py-2.5 rounded-xl bg-[#F8F7F4] border border-[#E2DFD8] text-xs sm:text-sm font-semibold text-[#1F2937] transition-all cursor-pointer"
                     >
                       Inspect Details
-                    </button>
+                    </motion.button>
                   </div>
                 </motion.div>
               );

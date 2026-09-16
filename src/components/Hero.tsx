@@ -52,20 +52,37 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
+    stiffness: 75,
+    damping: 24,
     restDelta: 0.001
   });
 
-  // Parallax transforms for background orbs, image card, floating chips, and inner optics
-  const bgOrb1Y = useTransform(smoothProgress, [0, 1], [0, 160]);
-  const bgOrb2Y = useTransform(smoothProgress, [0, 1], [0, -140]);
-  const textColY = useTransform(smoothProgress, [0, 1], [0, 25]);
-  const cardParallaxY = useTransform(smoothProgress, [0, 1], [0, 50]);
-  const floatingBadgeTopY = useTransform(smoothProgress, [0, 1], [0, -70]);
-  const floatingBadgeBottomY = useTransform(smoothProgress, [0, 1], [0, 60]);
-  const portraitImageY = useTransform(smoothProgress, [0, 1], ['-3%', '4%']);
-  const portraitImageScale = useTransform(smoothProgress, [0, 1], [1.02, 1.08]);
+  // Multilayered parallax velocity depth transforms
+  // Layer 0: Farthest background ambient orbs & architectural depth
+  const bgOrb1Y = useTransform(smoothProgress, [0, 1], [0, 190]);
+  const bgOrb1Rotate = useTransform(smoothProgress, [0, 1], [0, 22]);
+  const bgOrb2Y = useTransform(smoothProgress, [0, 1], [0, -150]);
+  const bgOrb3Y = useTransform(smoothProgress, [0, 1], [0, 110]);
+
+  // Layer 1: Foreground text content with steady calm float
+  const textColY = useTransform(smoothProgress, [0, 1], [0, 22]);
+  const textEyebrowY = useTransform(smoothProgress, [0, 1], [0, 10]);
+  const textCtaY = useTransform(smoothProgress, [0, 1], [0, 30]);
+
+  // Layer 2: Right column showcase container with 3D perspective and moderate velocity
+  const cardParallaxY = useTransform(smoothProgress, [0, 1], [0, 52]);
+  const cardRotateX = useTransform(smoothProgress, [0, 1], [0, 3.5]);
+
+  // Layer 3: Inside the portrait frame - inverted parallax for stereoscopic window depth!
+  const portraitImageY = useTransform(smoothProgress, [0, 1], ['-6%', '6%']);
+  const portraitImageScale = useTransform(smoothProgress, [0, 1], [1.02, 1.10]);
+  const nameOverlayY = useTransform(smoothProgress, [0, 1], [0, -14]);
+
+  // Layer 4: Floating badges with highest velocity (closest to camera)
+  const floatingBadgeTopY = useTransform(smoothProgress, [0, 1], [0, -85]);
+  const floatingBadgeTopX = useTransform(smoothProgress, [0, 1], [0, 14]);
+  const floatingBadgeBottomY = useTransform(smoothProgress, [0, 1], [0, 75]);
+  const floatingBadgeBottomX = useTransform(smoothProgress, [0, 1], [0, -12]);
 
   return (
     <section
@@ -76,16 +93,16 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       {/* Parallax Architectural Background Orbs */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         <motion.div 
-          style={{ y: bgOrb1Y }}
-          className="absolute top-6 left-1/2 -translate-x-1/2 w-[900px] h-[480px] bg-gradient-to-b from-[#E8EDE3]/60 via-[#F4F6F2]/40 to-transparent rounded-full blur-3xl opacity-80" 
+          style={{ y: bgOrb1Y, rotate: bgOrb1Rotate }}
+          className="absolute top-6 left-1/2 -translate-x-1/2 w-[900px] h-[480px] bg-gradient-to-b from-[#E8EDE3]/60 via-[#F4F6F2]/40 to-transparent rounded-full blur-3xl opacity-80 will-change-transform" 
         />
         <motion.div 
           style={{ y: bgOrb2Y }}
-          className="absolute top-36 right-[-80px] w-96 h-96 bg-[#7C8F6A]/10 rounded-full blur-2xl opacity-70" 
+          className="absolute top-36 right-[-80px] w-96 h-96 bg-[#7C8F6A]/10 rounded-full blur-2xl opacity-70 will-change-transform" 
         />
         <motion.div 
-          style={{ y: bgOrb1Y }}
-          className="absolute -bottom-20 left-[-80px] w-80 h-80 bg-[#D3DCCB]/30 rounded-full blur-2xl opacity-60" 
+          style={{ y: bgOrb3Y }}
+          className="absolute -bottom-20 left-[-80px] w-80 h-80 bg-[#D3DCCB]/30 rounded-full blur-2xl opacity-60 will-change-transform" 
         />
       </div>
 
@@ -166,29 +183,34 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               I help entrepreneurs, startups, and busy professionals streamline operations, keep schedules synchronized, and maintain clean, organized documentation with unwavering attention to detail.
             </p>
 
-            {/* Primary & Secondary Call to Actions */}
-            <div className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto">
+            {/* Primary & Secondary Call to Actions with Tactile Feedback */}
+            <motion.div 
+              style={{ y: textCtaY }}
+              className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto"
+            >
               <motion.button
                 id="hero-hire-me-btn"
                 onClick={() => onNavigate('contact')}
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#1F2937] text-white hover:bg-[#7C8F6A] font-semibold text-sm transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                whileHover={{ scale: 1.03, y: -2, backgroundColor: '#6B7D5A', boxShadow: '0 10px 25px -4px rgba(85, 100, 71, 0.35)' }}
+                whileTap={{ scale: 0.96, y: 0 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#1F2937] text-white font-semibold text-sm transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Hire Me</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#A3B899]" />
               </motion.button>
 
               <motion.button
                 id="hero-view-work-btn"
                 onClick={() => onNavigate('work')}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white text-[#1F2937] hover:bg-[#F4F6F2] font-semibold text-sm border border-[#E2DFD8] transition-all duration-200 shadow-2xs flex items-center justify-center gap-2 cursor-pointer"
+                whileHover={{ scale: 1.02, y: -2, borderColor: '#7C8F6A', backgroundColor: '#F4F6F2', boxShadow: '0 6px 18px rgba(0, 0, 0, 0.05)' }}
+                whileTap={{ scale: 0.96, y: 0 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white text-[#1F2937] font-semibold text-sm border border-[#E2DFD8] transition-all shadow-2xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>View Selected Work</span>
               </motion.button>
-            </div>
+            </motion.div>
 
             {/* Credibility Pillars (Checkmarks) */}
             <div className="mt-10 pt-8 border-t border-[#E2DFD8] grid grid-cols-3 gap-4 w-full">
@@ -220,13 +242,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           </motion.div>
 
           {/* Right Column: Hero Visual Showcase (Portrait with Parallax Badges & Interactive Desk) */}
-          <div className="lg:col-span-5 w-full">
+          <div className="lg:col-span-5 w-full [perspective:1200px]">
             <motion.div
-              style={{ y: cardParallaxY }}
+              style={{ y: cardParallaxY, rotateX: cardRotateX, transformStyle: 'preserve-3d' }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="relative"
+              className="relative will-change-transform"
             >
               {/* Dual-Mode Selector Tabs */}
               <div className="flex items-center justify-between mb-3 px-1">
@@ -271,10 +293,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     transition={{ duration: 0.3 }}
                     className="relative bg-white rounded-3xl border border-[#E2DFD8] shadow-lg p-5 sm:p-6"
                   >
-                    {/* Parallax Floating Top Badge */}
+                    {/* Parallax Floating Top Badge with Distinct Layer Velocity */}
                     <motion.div
-                      style={{ y: floatingBadgeTopY }}
-                      className="absolute -top-5 -right-3 sm:-right-5 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-[#D3DCCB] shadow-md flex items-center gap-2.5"
+                      style={{ y: floatingBadgeTopY, x: floatingBadgeTopX, translateZ: 30 }}
+                      className="absolute -top-5 -right-3 sm:-right-5 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-[#D3DCCB] shadow-md flex items-center gap-2.5 will-change-transform"
                     >
                       <div className="w-8 h-8 rounded-xl bg-[#E8EDE3] flex items-center justify-center text-[#556447]">
                         <GraduationCap className="w-4 h-4" />
@@ -286,7 +308,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     </motion.div>
 
                     {/* Main Portrait Frame with Parallax Optical Depth */}
-                    <div className="relative rounded-2xl overflow-hidden aspect-[4/4.5] sm:aspect-[4/4.8] bg-stone-100 border border-[#D3DCCB] group">
+                    <div className="relative rounded-2xl overflow-hidden aspect-[4/4.5] sm:aspect-[4/4.8] bg-stone-100 border border-[#D3DCCB] group [transform-style:preserve-3d]">
                       <motion.img
                         style={{ y: portraitImageY, scale: portraitImageScale }}
                         src="/main 1.jpg"
@@ -294,7 +316,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                           (e.currentTarget as HTMLImageElement).src = '/zainab.jpg';
                         }}
                         alt="Mustapha Zainab Olabimpe - Certified Virtual Assistant"
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover object-top will-change-transform"
                         referrerPolicy="no-referrer"
                       />
 
@@ -302,7 +324,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-90" />
 
                       {/* Name & Credentials Card at Bottom of Picture */}
-                      <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                      <motion.div 
+                        style={{ y: nameOverlayY }}
+                        className="absolute bottom-0 left-0 right-0 p-5 text-white will-change-transform"
+                      >
                         <div className="flex items-center gap-2 mb-1">
                           <span className="w-2 h-2 rounded-full bg-[#7C8F6A] animate-pulse" />
                           <span className="text-xs font-bold uppercase tracking-widest text-[#E8EDE3]">
@@ -315,13 +340,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                         <p className="text-xs text-white/80 mt-1 font-medium">
                           Specializing in Executive Organization, Data Accuracy & Operations
                         </p>
-                      </div>
+                      </motion.div>
                     </div>
 
-                    {/* Parallax Floating Bottom Badge */}
+                    {/* Parallax Floating Bottom Badge with Distinct Layer Velocity */}
                     <motion.div
-                      style={{ y: floatingBadgeBottomY }}
-                      className="absolute -bottom-5 -left-3 sm:-left-4 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-[#D3DCCB] shadow-md flex items-center gap-3"
+                      style={{ y: floatingBadgeBottomY, x: floatingBadgeBottomX, translateZ: 35 }}
+                      className="absolute -bottom-5 -left-3 sm:-left-4 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-[#D3DCCB] shadow-md flex items-center gap-3 will-change-transform"
                     >
                       <div className="w-8 h-8 rounded-xl bg-[#1F2937] flex items-center justify-center text-white">
                         <ShieldCheck className="w-4 h-4 text-[#7C8F6A]" />

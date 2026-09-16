@@ -11,6 +11,7 @@ import { ToolsSection } from './components/ToolsSection';
 import { SelectedWork } from './components/SelectedWork';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { CustomCursor } from './components/CustomCursor';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('home');
@@ -83,6 +84,9 @@ export default function App() {
 
   return (
     <div id="portfolio-app-root" className="min-h-screen flex flex-col bg-[#F8F7F4] text-[#1F2937] font-sans antialiased selection:bg-[#E8EDE3] selection:text-[#2D3A24] relative">
+      {/* Refined Tactile Custom Cursor for Desktop Pointer */}
+      <CustomCursor />
+
       {/* Dynamic Scroll Progress Bar */}
       <motion.div
         id="scroll-progress-bar"
