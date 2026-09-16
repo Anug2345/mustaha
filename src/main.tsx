@@ -2,7 +2,6 @@ import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import App from './App.tsx';
 import { ErrorBoundary } from './components/ErrorBoundary.tsx';
-import { ThemeProvider } from './context/ThemeContext.tsx';
 import './index.css';
 
 // Guard against third-party extension injection rejections (e.g. MetaMask, wallet extensions)
@@ -26,9 +25,7 @@ if (typeof window !== 'undefined') {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <App />
     </ErrorBoundary>
   </StrictMode>,
 );

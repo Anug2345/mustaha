@@ -11,7 +11,6 @@ import { ToolsSection } from './components/ToolsSection';
 import { SelectedWork } from './components/SelectedWork';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { CustomCursor } from './components/CustomCursor';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('home');
@@ -83,10 +82,7 @@ export default function App() {
   }, []);
 
   return (
-    <div id="portfolio-app-root" className="min-h-screen flex flex-col bg-[#F8F7F4] dark:bg-[#121513] text-[#1F2937] dark:text-[#F3F5F1] font-sans antialiased selection:bg-[#E8EDE3] dark:selection:bg-[#7C8F6A]/30 selection:text-[#2D3A24] dark:selection:text-[#E8EDE3] relative transition-colors duration-200">
-      {/* Refined Tactile Custom Cursor for Desktop Pointer */}
-      <CustomCursor />
-
+    <div id="portfolio-app-root" className="min-h-screen flex flex-col bg-[#F8F7F4] text-[#1F2937] font-sans antialiased selection:bg-[#E8EDE3] selection:text-[#2D3A24] relative">
       {/* Dynamic Scroll Progress Bar */}
       <motion.div
         id="scroll-progress-bar"
@@ -198,7 +194,7 @@ export default function App() {
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-[#1F2937] dark:bg-[#222823] text-white shadow-lg hover:bg-[#7C8F6A] dark:hover:bg-[#6B7D5A] transition-colors border border-white/20 dark:border-[#2B332C] flex items-center justify-center cursor-pointer"
+            className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-[#1F2937] text-white shadow-lg hover:bg-[#7C8F6A] transition-colors border border-white/20 flex items-center justify-center cursor-pointer"
             aria-label="Back to top"
           >
             <ArrowUp className="w-5 h-5" />

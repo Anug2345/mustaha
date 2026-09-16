@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --color-sage-50: #F4F6F2;
@@ -13,43 +11,9 @@
   --color-charcoal-800: #1F2937;
   --color-charcoal-900: #111827;
   --color-warm-bg: #F8F7F4;
-
-  /* Refined Dark Mode Architectural Surfaces */
-  --color-dark-bg: #121513;
-  --color-dark-surface: #1B201C;
-  --color-dark-surface-elevated: #222823;
-  --color-dark-border: #2B332C;
-  --color-dark-border-subtle: #242A25;
-  --color-dark-text-primary: #F3F5F1;
-  --color-dark-text-secondary: #9BA796;
-  --color-dark-text-muted: #73806E;
-  --color-dark-sage-soft: rgba(124, 143, 106, 0.18);
-}
-
-:root {
-  --app-bg: #F8F7F4;
-  --app-surface: #FFFFFF;
-  --app-surface-subtle: #F4F6F2;
-  --app-border: #E2DFD8;
-  --app-text: #1F2937;
-  --app-text-muted: #4B5563;
-  color-scheme: light;
-}
-
-html.dark {
-  --app-bg: #121513;
-  --app-surface: #1B201C;
-  --app-surface-subtle: #161A17;
-  --app-border: #2B332C;
-  --app-text: #F3F5F1;
-  --app-text-muted: #9BA796;
-  color-scheme: dark;
 }
 
 html {
   font-family: var(--font-sans);
   scroll-behavior: smooth;
-  background-color: var(--app-bg);
-  color: var(--app-text);
-  transition: background-color 0.25s ease, color 0.25s ease;
 }

@@ -64,25 +64,18 @@ export const SelectedWork: React.FC = () => {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 75,
-    damping: 24,
+    stiffness: 85,
+    damping: 26,
     restDelta: 0.001
   });
 
-  // Layered subtle parallax depth transformations with distinct velocities
-  // Layer 0: Deep background orbs & watermark (highest velocity difference for depth)
-  const bgOrb1Y = useTransform(smoothProgress, [0, 1], [-110, 110]);
-  const bgOrb2Y = useTransform(smoothProgress, [0, 1], [95, -95]);
-  const watermarkShift = useTransform(smoothProgress, [0, 1], [-80, 80]);
-  const watermarkScale = useTransform(smoothProgress, [0, 1], [0.95, 1.05]);
-
-  // Layer 1: Section Header & Category Tabs (moderate velocity)
-  const headerY = useTransform(smoothProgress, [0, 1], [-24, 24]);
-  const filterTabsY = useTransform(smoothProgress, [0, 1], [-12, 12]);
-
-  // Layer 2: Foreground Staggered Columns (counter-balanced subtle displacement)
-  const colEvenY = useTransform(smoothProgress, [0, 1], [-32, 32]);
-  const colOddY = useTransform(smoothProgress, [0, 1], [32, -32]);
+  // Layered subtle parallax transformations
+  const bgOrb1Y = useTransform(smoothProgress, [0, 1], [-50, 50]);
+  const bgOrb2Y = useTransform(smoothProgress, [0, 1], [40, -40]);
+  const headerY = useTransform(smoothProgress, [0, 1], [-12, 12]);
+  const colEvenY = useTransform(smoothProgress, [0, 1], [-18, 18]);
+  const colOddY = useTransform(smoothProgress, [0, 1], [18, -18]);
+  const watermarkShift = useTransform(smoothProgress, [0, 1], [-30, 30]);
 
   const getCategoryIcon = (category: string) => {
     if (category.includes('Project Management') || category.includes('Workflow')) {
@@ -123,21 +116,21 @@ export const SelectedWork: React.FC = () => {
     <section 
       ref={sectionRef}
       id="work" 
-      className="relative py-20 md:py-28 bg-[#F8F7F4] dark:bg-[#121613] border-t border-[#E2DFD8] dark:border-[#2B332C] overflow-hidden transition-colors"
+      className="relative py-20 md:py-28 bg-[#F8F7F4] border-t border-[#E2DFD8] overflow-hidden"
     >
       {/* Parallax Subtle Background Accents */}
       <div className="absolute inset-0 pointer-events-none -z-0 overflow-hidden">
         <motion.div
           style={{ y: bgOrb1Y }}
-          className="absolute -top-16 right-[-60px] w-96 h-96 bg-[#E8EDE3]/40 dark:bg-[#7C8F6A]/10 rounded-full blur-3xl"
+          className="absolute -top-16 right-[-60px] w-96 h-96 bg-[#E8EDE3]/40 rounded-full blur-3xl"
         />
         <motion.div
           style={{ y: bgOrb2Y }}
-          className="absolute -bottom-24 left-[-80px] w-96 h-96 bg-[#7C8F6A]/10 dark:bg-[#556447]/15 rounded-full blur-3xl"
+          className="absolute -bottom-24 left-[-80px] w-96 h-96 bg-[#7C8F6A]/10 rounded-full blur-3xl"
         />
         <motion.div
-          style={{ y: watermarkShift, scale: watermarkScale }}
-          className="absolute top-1/2 right-10 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] dark:opacity-[0.02] text-8xl font-black text-[#1F2937] dark:text-[#E8EDE3] tracking-widest hidden xl:block uppercase will-change-transform"
+          style={{ y: watermarkShift }}
+          className="absolute top-1/2 right-10 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] text-8xl font-black text-[#1F2937] tracking-widest hidden xl:block uppercase"
         >
           ARTIFACTS
         </motion.div>
@@ -152,35 +145,32 @@ export const SelectedWork: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 will-change-transform"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] dark:bg-[#222823] text-[#556447] dark:text-[#A3B899] text-xs font-bold tracking-wider uppercase mb-3 border border-transparent dark:border-[#2B332C]">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] text-[#556447] text-xs font-bold tracking-wider uppercase mb-3">
               <FolderGit2 className="w-3.5 h-3.5" />
               Verified Artifacts & Systems
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1F2937] dark:text-[#F3F5F1] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1F2937] tracking-tight">
               Selected Work
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-[#4B5563] dark:text-[#9BA796] leading-relaxed">
+            <p className="mt-4 text-base sm:text-lg text-[#4B5563] leading-relaxed">
               Real-world administrative frameworks, workflow boards, client intake pipelines, and structured repositories built to eliminate friction.
             </p>
           </div>
 
           <div className="text-xs text-[#6B7280]">
-            <span className="inline-flex items-center gap-1.5 bg-white dark:bg-[#1B201C] border border-[#E2DFD8] dark:border-[#2B332C] text-[#6B7280] dark:text-[#9BA796] px-3 py-1.5 rounded-lg shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 bg-white border border-[#E2DFD8] px-3 py-1.5 rounded-lg shadow-2xs">
               <Info className="w-3.5 h-3.5 text-[#7C8F6A]" />
               Authentic work artifacts • Direct access links
             </span>
           </div>
         </motion.div>
 
-        {/* Interactive Filter Tabs with Calibrated Velocity */}
-        <motion.div 
-          style={{ y: filterTabsY }}
-          className="mt-10 flex items-center justify-start sm:justify-center overflow-x-auto pb-2 scrollbar-none will-change-transform"
-        >
-          <div className="inline-flex p-1 bg-white dark:bg-[#1B201C] border border-[#E2DFD8] dark:border-[#2B332C] rounded-xl shadow-2xs">
+        {/* Interactive Filter Tabs */}
+        <div className="mt-10 flex items-center justify-start sm:justify-center overflow-x-auto pb-2 scrollbar-none">
+          <div className="inline-flex p-1 bg-white border border-[#E2DFD8] rounded-xl shadow-2xs">
             {[
               { id: 'all', label: 'All Artifacts (4)' },
               { id: 'boards', label: 'Project Boards' },
@@ -191,13 +181,13 @@ export const SelectedWork: React.FC = () => {
                 key={tab.id}
                 onClick={() => setActiveCategory(tab.id as 'all' | 'boards' | 'intake' | 'storage')}
                 className={`relative px-4 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer z-10 ${
-                  activeCategory === tab.id ? 'text-[#1F2937] dark:text-[#F3F5F1]' : 'text-[#6B7280] dark:text-[#9BA796] hover:text-[#1F2937] dark:hover:text-[#F3F5F1]'
+                  activeCategory === tab.id ? 'text-[#1F2937]' : 'text-[#6B7280] hover:text-[#1F2937]'
                 }`}
               >
                 {activeCategory === tab.id && (
                   <motion.div
                     layoutId="workCategoryPill"
-                    className="absolute inset-0 bg-[#E8EDE3] dark:bg-[#2A342B] rounded-lg -z-10"
+                    className="absolute inset-0 bg-[#E8EDE3] rounded-lg -z-10"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -205,12 +195,12 @@ export const SelectedWork: React.FC = () => {
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Selected Work Grid with Layered Parallax Movement & Animated Layout */}
         <motion.div 
           layout
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 [perspective:1200px]"
+          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
@@ -230,42 +220,42 @@ export const SelectedWork: React.FC = () => {
                     layout: { duration: 0.3 }
                   }}
                   whileHover={{ y: -6, scale: 1.015 }}
-                  className="bg-white dark:bg-[#1B201C] rounded-2xl border border-[#E2DFD8] dark:border-[#2B332C] p-7 sm:p-8 shadow-2xs hover:shadow-md hover:border-[#7C8F6A] dark:hover:border-[#7C8F6A] transition-all duration-200 flex flex-col justify-between group relative overflow-hidden"
+                  className="bg-white rounded-2xl border border-[#E2DFD8] p-7 sm:p-8 shadow-2xs hover:shadow-md hover:border-[#7C8F6A] transition-all duration-200 flex flex-col justify-between group relative overflow-hidden"
                 >
                   <div>
                     {/* Header with Icon and Category Tag */}
                     <div className="flex items-center justify-between gap-2 mb-4">
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="w-11 h-11 rounded-xl bg-[#E8EDE3] dark:bg-[#222823] flex items-center justify-center group-hover:bg-[#7C8F6A] dark:group-hover:bg-[#556447] transition-colors shadow-2xs"
+                        className="w-11 h-11 rounded-xl bg-[#E8EDE3] flex items-center justify-center group-hover:bg-[#7C8F6A] transition-colors shadow-2xs"
                       >
-                        <span className="group-hover:brightness-200 transition-all text-[#556447] dark:text-[#A3B899] group-hover:text-white">
+                        <span className="group-hover:brightness-200 transition-all">
                           {getCategoryIcon(project.category)}
                         </span>
                       </motion.div>
-                      <span className="px-3 py-1 rounded-full bg-[#F4F6F2] dark:bg-[#151916] border border-[#E2DFD8] dark:border-[#2B332C] text-[11px] font-semibold text-[#556447] dark:text-[#A3B899]">
+                      <span className="px-3 py-1 rounded-full bg-[#F4F6F2] border border-[#E2DFD8] text-[11px] font-semibold text-[#556447]">
                         {project.category}
                       </span>
                     </div>
 
                     {/* Project Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#1F2937] dark:text-[#F3F5F1] group-hover:text-[#556447] dark:group-hover:text-[#A3B899] transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#1F2937] group-hover:text-[#556447] transition-colors">
                       {project.name}
                     </h3>
-                    <p className="mt-3 text-sm text-[#4B5563] dark:text-[#9BA796] leading-relaxed">
+                    <p className="mt-3 text-sm text-[#4B5563] leading-relaxed">
                       {project.description}
                     </p>
 
                     {/* Key Operational Highlights */}
-                    <div className="mt-6 pt-5 border-t border-[#E2DFD8]/70 dark:border-[#2B332C]">
-                      <h4 className="text-xs font-bold text-[#1F2937] dark:text-[#F3F5F1] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                    <div className="mt-6 pt-5 border-t border-[#E2DFD8]/70">
+                      <h4 className="text-xs font-bold text-[#1F2937] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5 text-[#7C8F6A]" />
                         Operational Highlights:
                       </h4>
                       <ul className="space-y-2">
                         {project.highlights.map((highlight, idx) => (
-                          <li key={idx} className="flex items-start gap-2.5 text-xs text-[#4B5563] dark:text-[#9BA796] leading-relaxed">
-                            <span className="w-4 h-4 rounded-full bg-[#E8EDE3] dark:bg-[#222823] text-[#556447] dark:text-[#A3B899] flex items-center justify-center shrink-0 mt-0.5 border border-transparent dark:border-[#2B332C]">
+                          <li key={idx} className="flex items-start gap-2.5 text-xs text-[#4B5563] leading-relaxed">
+                            <span className="w-4 h-4 rounded-full bg-[#E8EDE3] text-[#556447] flex items-center justify-center shrink-0 mt-0.5">
                               <Check className="w-2.5 h-2.5 stroke-[3]" />
                             </span>
                             <span>{highlight}</span>
@@ -279,7 +269,7 @@ export const SelectedWork: React.FC = () => {
                       {project.tools.map((tool, idx) => (
                         <span
                           key={idx}
-                          className="px-2.5 py-1 rounded-md bg-[#F8F7F4] dark:bg-[#161A17] border border-[#E2DFD8] dark:border-[#2B332C] text-[11px] font-medium text-[#4B5563] dark:text-[#9BA796]"
+                          className="px-2.5 py-1 rounded-md bg-[#F8F7F4] border border-[#E2DFD8] text-[11px] font-medium text-[#4B5563]"
                         >
                           {tool}
                         </span>
@@ -287,32 +277,26 @@ export const SelectedWork: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Action Buttons with Tactile Feedback */}
-                  <div className="mt-8 pt-5 border-t border-[#E2DFD8]/60 dark:border-[#2B332C] flex items-center justify-between gap-3">
-                    <motion.a
+                  {/* Action Buttons */}
+                  <div className="mt-8 pt-5 border-t border-[#E2DFD8]/60 flex items-center justify-between gap-3">
+                    <a
                       id={`open-project-link-${project.id}`}
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.03, y: -1, backgroundColor: '#6B7D5A', boxShadow: '0 4px 14px rgba(85, 100, 71, 0.25)' }}
-                      whileTap={{ scale: 0.96 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1F2937] dark:bg-[#2A342B] text-white text-xs sm:text-sm font-semibold transition-colors shadow-2xs border border-transparent dark:border-[#384639]"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1F2937] hover:bg-[#7C8F6A] text-white text-xs sm:text-sm font-semibold transition-colors shadow-2xs"
                     >
                       <span>Open Artifact</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-[#A3B899]" />
-                    </motion.a>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
 
-                    <motion.button
+                    <button
                       id={`preview-details-btn-${project.id}`}
                       onClick={() => setActiveProjectModal(project)}
-                      whileHover={{ scale: 1.02, y: -1, backgroundColor: '#E8EDE3', borderColor: '#7C8F6A' }}
-                      whileTap={{ scale: 0.96 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                      className="px-4 py-2.5 rounded-xl bg-[#F8F7F4] dark:bg-[#161A17] border border-[#E2DFD8] dark:border-[#2B332C] text-xs sm:text-sm font-semibold text-[#1F2937] dark:text-[#F3F5F1] transition-all cursor-pointer"
+                      className="px-4 py-2.5 rounded-xl bg-[#F8F7F4] hover:bg-[#E8EDE3] border border-[#E2DFD8] text-xs sm:text-sm font-semibold text-[#1F2937] transition-colors cursor-pointer active:scale-98"
                     >
                       Inspect Details
-                    </motion.button>
+                    </button>
                   </div>
                 </motion.div>
               );
@@ -330,7 +314,7 @@ export const SelectedWork: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs"
             onClick={() => setActiveProjectModal(null)}
           >
             <motion.div
@@ -339,26 +323,26 @@ export const SelectedWork: React.FC = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: 'spring', duration: 0.35 }}
-              className="bg-white dark:bg-[#1B201C] rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-[#D3DCCB] dark:border-[#2B332C] shadow-2xl relative overflow-hidden"
+              className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-[#D3DCCB] shadow-2xl relative overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 id="close-project-modal-btn"
                 onClick={() => setActiveProjectModal(null)}
-                className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#F4F6F2] dark:bg-[#151916] hover:bg-[#E8EDE3] dark:hover:bg-[#222823] text-[#4B5563] dark:text-[#9BA796] flex items-center justify-center transition-colors cursor-pointer border border-transparent dark:border-[#2B332C]"
+                className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#F4F6F2] hover:bg-[#E8EDE3] text-[#4B5563] flex items-center justify-center transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-3 py-1 rounded-md bg-[#E8EDE3] dark:bg-[#222823] text-[#556447] dark:text-[#A3B899] text-xs font-bold uppercase tracking-wider border border-transparent dark:border-[#2B332C]">
+                <span className="px-3 py-1 rounded-md bg-[#E8EDE3] text-[#556447] text-xs font-bold uppercase tracking-wider">
                   {activeProjectModal.category}
                 </span>
-                <span className="text-xs text-[#6B7280] dark:text-[#9BA796]">Verified Case Study</span>
+                <span className="text-xs text-[#6B7280]">Verified Case Study</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#1F2937] dark:text-[#F3F5F1] tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#1F2937] tracking-tight">
                 {activeProjectModal.name}
               </h3>
 
@@ -370,25 +354,25 @@ export const SelectedWork: React.FC = () => {
                 };
                 return (
                   <>
-                    <p className="mt-3 text-sm sm:text-base text-[#4B5563] dark:text-[#9BA796] leading-relaxed">
+                    <p className="mt-3 text-sm sm:text-base text-[#4B5563] leading-relaxed">
                       {caseDetail.challenge}
                     </p>
 
                     <div className="mt-6 space-y-4">
-                      <div className="p-4 rounded-xl bg-[#F8F7F4] dark:bg-[#151916] border border-[#E2DFD8] dark:border-[#2B332C]">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F2937] dark:text-[#F3F5F1] mb-1">
+                      <div className="p-4 rounded-xl bg-[#F8F7F4] border border-[#E2DFD8]">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F2937] mb-1">
                           System Architecture & Approach
                         </h4>
-                        <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#9BA796] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">
                           {caseDetail.solution}
                         </p>
                       </div>
 
-                      <div className="p-4 rounded-xl bg-[#E8EDE3]/60 dark:bg-[#222823] border border-[#D3DCCB] dark:border-[#2B332C]">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#556447] dark:text-[#A3B899] mb-1">
+                      <div className="p-4 rounded-xl bg-[#E8EDE3]/60 border border-[#D3DCCB]">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#556447] mb-1">
                           Direct Business Impact
                         </h4>
-                        <p className="text-xs sm:text-sm text-[#1F2937] dark:text-[#F3F5F1] font-medium leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#1F2937] font-medium leading-relaxed">
                           {caseDetail.impact}
                         </p>
                       </div>
@@ -401,7 +385,7 @@ export const SelectedWork: React.FC = () => {
                 {activeProjectModal.tools.map((tool, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 rounded-md bg-[#F4F6F2] dark:bg-[#161A17] text-[#1F2937] dark:text-[#F3F5F1] text-xs font-medium border border-[#E2DFD8] dark:border-[#2B332C]"
+                    className="px-2.5 py-1 rounded-md bg-[#F4F6F2] text-[#1F2937] text-xs font-medium border border-[#E2DFD8]"
                   >
                     {tool}
                   </span>
@@ -409,12 +393,12 @@ export const SelectedWork: React.FC = () => {
               </div>
 
               {/* Footer with Prev/Next and External Link */}
-              <div className="mt-8 pt-5 border-t border-[#E2DFD8] dark:border-[#2B332C] flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="mt-8 pt-5 border-t border-[#E2DFD8] flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={handlePrevModalProject}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F8F7F4] dark:bg-[#161A17] hover:bg-[#E8EDE3] dark:hover:bg-[#222823] text-xs font-semibold text-[#1F2937] dark:text-[#F3F5F1] border border-[#E2DFD8] dark:border-[#2B332C] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F8F7F4] hover:bg-[#E8EDE3] text-xs font-semibold text-[#1F2937] border border-[#E2DFD8] transition-colors cursor-pointer"
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
                     <span>Prev</span>
@@ -422,7 +406,7 @@ export const SelectedWork: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleNextModalProject}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F8F7F4] dark:bg-[#161A17] hover:bg-[#E8EDE3] dark:hover:bg-[#222823] text-xs font-semibold text-[#1F2937] dark:text-[#F3F5F1] border border-[#E2DFD8] dark:border-[#2B332C] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F8F7F4] hover:bg-[#E8EDE3] text-xs font-semibold text-[#1F2937] border border-[#E2DFD8] transition-colors cursor-pointer"
                   >
                     <span>Next</span>
                     <ChevronRight className="w-3.5 h-3.5" />
@@ -432,7 +416,7 @@ export const SelectedWork: React.FC = () => {
                 <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
                   <button
                     onClick={() => setActiveProjectModal(null)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold text-[#6B7280] dark:text-[#9BA796] hover:text-[#1F2937] dark:hover:text-[#F3F5F1] transition-colors cursor-pointer"
+                    className="px-4 py-2 rounded-xl text-xs font-semibold text-[#6B7280] hover:text-[#1F2937] transition-colors cursor-pointer"
                   >
                     Close
                   </button>
