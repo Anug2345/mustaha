@@ -83,14 +83,14 @@ export default function App() {
   }, []);
 
   return (
-    <div id="portfolio-app-root" className="min-h-screen flex flex-col bg-[#F8F7F4] text-[#1F2937] font-sans antialiased selection:bg-[#E8EDE3] selection:text-[#2D3A24] relative">
+    <div id="portfolio-app-root" className="min-h-screen flex flex-col bg-[#F8F7F4] dark:bg-[#111413] text-[#1F2937] dark:text-[#F3F6F2] font-sans antialiased selection:bg-[#E8EDE3] dark:selection:bg-[#253228] selection:text-[#2D3A24] dark:selection:text-[#C2D6B5] relative transition-colors duration-200">
       {/* Refined Tactile Custom Cursor for Desktop Pointer */}
       <CustomCursor />
 
       {/* Dynamic Scroll Progress Bar */}
       <motion.div
         id="scroll-progress-bar"
-        className="fixed top-0 left-0 right-0 h-1 bg-[#7C8F6A] origin-left z-50 pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-1 bg-[#7C8F6A] dark:bg-[#8FA67C] origin-left z-50 pointer-events-none"
         style={{ scaleX }}
       />
 
@@ -198,7 +198,7 @@ export default function App() {
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-[#1F2937] text-white shadow-lg hover:bg-[#7C8F6A] transition-colors border border-white/20 flex items-center justify-center cursor-pointer"
+            className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 min-w-[44px] min-h-[44px] p-3 rounded-full bg-[#1F2937] dark:bg-[#202723] text-white dark:text-[#F3F6F2] shadow-lg hover:bg-[#7C8F6A] dark:hover:bg-[#8FA67C] transition-colors border border-white/20 dark:border-white/10 flex items-center justify-center cursor-pointer"
             aria-label="Back to top"
           >
             <ArrowUp className="w-5 h-5" />

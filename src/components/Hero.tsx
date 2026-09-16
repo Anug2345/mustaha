@@ -88,21 +88,21 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     <section
       ref={containerRef}
       id="home"
-      className="relative pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28 overflow-hidden"
+      className="relative pt-20 pb-14 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28 overflow-x-clip"
     >
       {/* Parallax Architectural Background Orbs */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         <motion.div 
           style={{ y: bgOrb1Y, rotate: bgOrb1Rotate }}
-          className="absolute top-6 left-1/2 -translate-x-1/2 w-[900px] h-[480px] bg-gradient-to-b from-[#E8EDE3]/60 via-[#F4F6F2]/40 to-transparent rounded-full blur-3xl opacity-80 will-change-transform" 
+          className="absolute top-6 left-1/2 -translate-x-1/2 w-[900px] h-[480px] bg-gradient-to-b from-[#E8EDE3]/60 via-[#F4F6F2]/40 to-transparent dark:from-[#222C26]/40 dark:via-[#181D1A]/20 rounded-full blur-3xl opacity-80 will-change-transform" 
         />
         <motion.div 
           style={{ y: bgOrb2Y }}
-          className="absolute top-36 right-[-80px] w-96 h-96 bg-[#7C8F6A]/10 rounded-full blur-2xl opacity-70 will-change-transform" 
+          className="absolute top-36 right-[-80px] w-96 h-96 bg-[#7C8F6A]/10 dark:bg-[#8FA67C]/10 rounded-full blur-2xl opacity-70 will-change-transform" 
         />
         <motion.div 
           style={{ y: bgOrb3Y }}
-          className="absolute -bottom-20 left-[-80px] w-80 h-80 bg-[#D3DCCB]/30 rounded-full blur-2xl opacity-60 will-change-transform" 
+          className="absolute -bottom-20 left-[-80px] w-80 h-80 bg-[#D3DCCB]/30 dark:bg-[#202723]/40 rounded-full blur-2xl opacity-60 will-change-transform" 
         />
       </div>
 
@@ -122,43 +122,43 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <motion.div 
                 whileHover={{ scale: 1.02 }}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#D3DCCB] shadow-2xs"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181D1A] border border-[#D3DCCB] dark:border-[#2E3C32] shadow-2xs"
               >
-                <span className="w-2 h-2 rounded-full bg-[#7C8F6A]" />
-                <span className="text-xs font-bold text-[#1F2937] tracking-wider uppercase">
+                <span className="w-2 h-2 rounded-full bg-[#7C8F6A] dark:bg-[#8FA67C]" />
+                <span className="text-xs font-bold text-[#1F2937] dark:text-[#F3F6F2] tracking-wider uppercase">
                   MUSTAPHA ZAINAB OLABIMPE
                 </span>
               </motion.div>
 
               <div
                 id="hero-availability-badge"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E8EDE3] border border-[#D3DCCB] shadow-2xs"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E8EDE3] dark:bg-[#1F2922] border border-[#D3DCCB] dark:border-[#2E3C32] shadow-2xs"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7C8F6A] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7C8F6A]"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7C8F6A] dark:bg-[#8FA67C]"></span>
                 </span>
-                <span className="text-xs font-semibold text-[#556447]">
+                <span className="text-xs font-semibold text-[#556447] dark:text-[#AEC89B]">
                   Available for Immediate Support
                 </span>
               </div>
             </div>
 
             {/* Professional Sub-title Line */}
-            <p className="text-xs sm:text-sm font-semibold text-[#6B7280] tracking-wide mb-2 uppercase">
+            <p className="text-xs sm:text-sm font-semibold text-[#6B7280] dark:text-[#A8B3A7] tracking-wide mb-2 uppercase">
               Certified Virtual Assistant • Administrative Support • Data Accuracy
             </p>
 
             {/* Main Headline */}
             <h1
               id="hero-main-heading"
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1F2937] leading-[1.12]"
+              className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1F2937] dark:text-[#F3F6F2] leading-[1.15] sm:leading-[1.12]"
             >
               Reliable Support Behind{' '}
-              <span className="relative inline-block text-[#1F2937]">
+              <span className="relative inline-block text-[#1F2937] dark:text-[#F3F6F2]">
                 Your Best Work
                 <svg
-                  className="absolute left-0 -bottom-2 w-full h-2.5 text-[#7C8F6A]/50"
+                  className="absolute left-0 -bottom-2 w-full h-2.5 text-[#7C8F6A]/50 dark:text-[#8FA67C]/50"
                   viewBox="0 0 250 8"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +178,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             {/* Supporting Description */}
             <p
               id="hero-lead-text"
-              className="mt-6 text-base sm:text-lg text-[#4B5563] leading-relaxed max-w-2xl"
+              className="mt-5 sm:mt-6 text-base sm:text-lg text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed max-w-2xl"
             >
               I help entrepreneurs, startups, and busy professionals streamline operations, keep schedules synchronized, and maintain clean, organized documentation with unwavering attention to detail.
             </p>
@@ -186,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             {/* Primary & Secondary Call to Actions with Tactile Feedback */}
             <motion.div 
               style={{ y: textCtaY }}
-              className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto"
+              className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto"
             >
               <motion.button
                 id="hero-hire-me-btn"
@@ -194,10 +194,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 whileHover={{ scale: 1.03, y: -2, backgroundColor: '#6B7D5A', boxShadow: '0 10px 25px -4px rgba(85, 100, 71, 0.35)' }}
                 whileTap={{ scale: 0.96, y: 0 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#1F2937] text-white font-semibold text-sm transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#1F2937] dark:bg-[#8FA67C] text-white dark:text-[#111413] font-semibold text-sm transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer min-h-[44px]"
               >
                 <span>Hire Me</span>
-                <ArrowRight className="w-4 h-4 text-[#A3B899]" />
+                <ArrowRight className="w-4 h-4 text-[#A3B899] dark:text-[#111413]" />
               </motion.button>
 
               <motion.button
@@ -206,36 +206,42 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 whileHover={{ scale: 1.02, y: -2, borderColor: '#7C8F6A', backgroundColor: '#F4F6F2', boxShadow: '0 6px 18px rgba(0, 0, 0, 0.05)' }}
                 whileTap={{ scale: 0.96, y: 0 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white text-[#1F2937] font-semibold text-sm border border-[#E2DFD8] transition-all shadow-2xs flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white dark:bg-[#181D1A] text-[#1F2937] dark:text-[#F3F6F2] font-semibold text-sm border border-[#E2DFD8] dark:border-[#27322A] hover:bg-[#F4F6F2] dark:hover:bg-[#202723] transition-all shadow-2xs flex items-center justify-center gap-2 cursor-pointer min-h-[44px]"
               >
                 <span>View Selected Work</span>
               </motion.button>
             </motion.div>
 
             {/* Credibility Pillars (Checkmarks) */}
-            <div className="mt-10 pt-8 border-t border-[#E2DFD8] grid grid-cols-3 gap-4 w-full">
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1F2937]">
-                  <CheckCircle2 className="w-4 h-4 text-[#7C8F6A] shrink-0" />
-                  <span>Proactive</span>
+            <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[#E2DFD8] dark:border-[#27322A] grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 w-full">
+              <div className="flex items-start sm:flex-col gap-2.5 sm:gap-0">
+                <CheckCircle2 className="w-4 h-4 text-[#7C8F6A] dark:text-[#8FA67C] shrink-0 mt-0.5 sm:mt-0" />
+                <div>
+                  <div className="text-xs sm:text-sm font-bold text-[#1F2937] dark:text-[#F3F6F2]">
+                    Proactive
+                  </div>
+                  <p className="text-xs text-[#6B7280] dark:text-[#A8B3A7] mt-0.5">Staying two steps ahead</p>
                 </div>
-                <p className="text-xs text-[#6B7280] mt-0.5">Staying two steps ahead</p>
               </div>
 
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1F2937]">
-                  <CheckCircle2 className="w-4 h-4 text-[#7C8F6A] shrink-0" />
-                  <span>Organized</span>
+              <div className="flex items-start sm:flex-col gap-2.5 sm:gap-0">
+                <CheckCircle2 className="w-4 h-4 text-[#7C8F6A] dark:text-[#8FA67C] shrink-0 mt-0.5 sm:mt-0" />
+                <div>
+                  <div className="text-xs sm:text-sm font-bold text-[#1F2937] dark:text-[#F3F6F2]">
+                    Organized
+                  </div>
+                  <p className="text-xs text-[#6B7280] dark:text-[#A8B3A7] mt-0.5">Zero chaos, structured systems</p>
                 </div>
-                <p className="text-xs text-[#6B7280] mt-0.5">Zero chaos, structured systems</p>
               </div>
 
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1F2937]">
-                  <CheckCircle2 className="w-4 h-4 text-[#7C8F6A] shrink-0" />
-                  <span>Linguistic Rigor</span>
+              <div className="flex items-start sm:flex-col gap-2.5 sm:gap-0">
+                <CheckCircle2 className="w-4 h-4 text-[#7C8F6A] dark:text-[#8FA67C] shrink-0 mt-0.5 sm:mt-0" />
+                <div>
+                  <div className="text-xs sm:text-sm font-bold text-[#1F2937] dark:text-[#F3F6F2]">
+                    Linguistic Rigor
+                  </div>
+                  <p className="text-xs text-[#6B7280] dark:text-[#A8B3A7] mt-0.5">LASU Linguistics Scholar</p>
                 </div>
-                <p className="text-xs text-[#6B7280] mt-0.5">LASU Linguistics Scholar</p>
               </div>
             </div>
 
@@ -252,13 +258,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             >
               {/* Dual-Mode Selector Tabs */}
               <div className="flex items-center justify-between mb-3 px-1">
-                <div className="flex items-center p-1 bg-white rounded-xl border border-[#D3DCCB] shadow-2xs">
+                <div className="flex items-center p-1 bg-white dark:bg-[#181D1A] rounded-xl border border-[#D3DCCB] dark:border-[#2E3C32] shadow-2xs">
                   <button
                     onClick={() => setHeroMode('portrait')}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       heroMode === 'portrait'
-                        ? 'bg-[#1F2937] text-white shadow-2xs'
-                        : 'text-[#4B5563] hover:text-[#1F2937]'
+                        ? 'bg-[#1F2937] dark:bg-[#222C26] text-white dark:text-[#F3F6F2] shadow-2xs'
+                        : 'text-[#4B5563] dark:text-[#A8B3A7] hover:text-[#1F2937] dark:hover:text-[#F3F6F2]'
                     }`}
                   >
                     <span>Featured Portrait</span>
@@ -267,8 +273,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     onClick={() => setHeroMode('desk')}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       heroMode === 'desk'
-                        ? 'bg-[#1F2937] text-white shadow-2xs'
-                        : 'text-[#4B5563] hover:text-[#1F2937]'
+                        ? 'bg-[#1F2937] dark:bg-[#222C26] text-white dark:text-[#F3F6F2] shadow-2xs'
+                        : 'text-[#4B5563] dark:text-[#A8B3A7] hover:text-[#1F2937] dark:hover:text-[#F3F6F2]'
                     }`}
                   >
                     <Sliders className="w-3 h-3" />
@@ -276,7 +282,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                   </button>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8EDE3] text-[#556447] text-[11px] font-bold">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#E8EDE3] dark:bg-[#1F2922] text-[#556447] dark:text-[#AEC89B] text-[11px] font-bold">
                   <Sparkles className="w-3 h-3" />
                   Active Profile
                 </div>
@@ -291,24 +297,24 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.3 }}
-                    className="relative bg-white rounded-3xl border border-[#E2DFD8] shadow-lg p-5 sm:p-6"
+                    className="relative bg-white dark:bg-[#181D1A] rounded-3xl border border-[#E2DFD8] dark:border-[#27322A] shadow-lg p-3.5 sm:p-6"
                   >
                     {/* Parallax Floating Top Badge with Distinct Layer Velocity */}
                     <motion.div
                       style={{ y: floatingBadgeTopY, x: floatingBadgeTopX, translateZ: 30 }}
-                      className="absolute -top-5 -right-3 sm:-right-5 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-[#D3DCCB] shadow-md flex items-center gap-2.5 will-change-transform"
+                      className="absolute -top-4 right-1 sm:-top-5 sm:-right-4 z-20 bg-white/95 dark:bg-[#202723]/95 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl border border-[#D3DCCB] dark:border-[#2E3C32] shadow-md flex items-center gap-2 sm:gap-2.5 will-change-transform max-w-[calc(100%-1rem)]"
                     >
-                      <div className="w-8 h-8 rounded-xl bg-[#E8EDE3] flex items-center justify-center text-[#556447]">
-                        <GraduationCap className="w-4 h-4" />
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#E8EDE3] dark:bg-[#27322A] flex items-center justify-center text-[#556447] dark:text-[#AEC89B] shrink-0">
+                        <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </div>
-                      <div>
-                        <p className="text-[11px] font-bold text-[#1F2937]">LASU Linguistics</p>
-                        <p className="text-[10px] text-[#6B7280]">Applied Communication</p>
+                      <div className="min-w-0">
+                        <p className="text-[10px] sm:text-[11px] font-bold text-[#1F2937] dark:text-[#F3F6F2] truncate">LASU Linguistics</p>
+                        <p className="text-[9px] sm:text-[10px] text-[#6B7280] dark:text-[#A8B3A7] truncate">Applied Communication</p>
                       </div>
                     </motion.div>
 
                     {/* Main Portrait Frame with Parallax Optical Depth */}
-                    <div className="relative rounded-2xl overflow-hidden aspect-[4/4.5] sm:aspect-[4/4.8] bg-stone-100 border border-[#D3DCCB] group [transform-style:preserve-3d]">
+                    <div className="relative rounded-2xl overflow-hidden aspect-[4/4.5] sm:aspect-[4/4.8] bg-stone-100 dark:bg-[#141816] border border-[#D3DCCB] dark:border-[#2E3C32] group [transform-style:preserve-3d]">
                       <motion.img
                         style={{ y: portraitImageY, scale: portraitImageScale }}
                         src="/main 1.jpg"
@@ -321,23 +327,23 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                       />
 
                       {/* Ambient Gradient Overlay for Readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-90" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
 
                       {/* Name & Credentials Card at Bottom of Picture */}
                       <motion.div 
                         style={{ y: nameOverlayY }}
-                        className="absolute bottom-0 left-0 right-0 p-5 text-white will-change-transform"
+                        className="absolute bottom-0 left-0 right-0 p-3.5 sm:p-5 text-white will-change-transform"
                       >
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="w-2 h-2 rounded-full bg-[#7C8F6A] animate-pulse" />
-                          <span className="text-xs font-bold uppercase tracking-widest text-[#E8EDE3]">
+                        <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
+                          <span className="w-2 h-2 rounded-full bg-[#7C8F6A] dark:bg-[#8FA67C] animate-pulse shrink-0" />
+                          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#E8EDE3] truncate">
                             Certified Virtual Assistant
                           </span>
                         </div>
-                        <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white drop-shadow-xs">
+                        <h3 className="text-lg sm:text-2xl font-bold tracking-tight text-white drop-shadow-xs">
                           Mustapha Zainab Olabimpe
                         </h3>
-                        <p className="text-xs text-white/80 mt-1 font-medium">
+                        <p className="text-[11px] sm:text-xs text-white/85 mt-0.5 sm:mt-1 font-medium line-clamp-2">
                           Specializing in Executive Organization, Data Accuracy & Operations
                         </p>
                       </motion.div>
@@ -346,25 +352,25 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     {/* Parallax Floating Bottom Badge with Distinct Layer Velocity */}
                     <motion.div
                       style={{ y: floatingBadgeBottomY, x: floatingBadgeBottomX, translateZ: 35 }}
-                      className="absolute -bottom-5 -left-3 sm:-left-4 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-[#D3DCCB] shadow-md flex items-center gap-3 will-change-transform"
+                      className="absolute -bottom-4 left-1 sm:-bottom-5 sm:-left-4 z-20 bg-white/95 dark:bg-[#202723]/95 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2.5 rounded-2xl border border-[#D3DCCB] dark:border-[#2E3C32] shadow-md flex items-center gap-2 sm:gap-3 will-change-transform max-w-[calc(100%-1rem)]"
                     >
-                      <div className="w-8 h-8 rounded-xl bg-[#1F2937] flex items-center justify-center text-white">
-                        <ShieldCheck className="w-4 h-4 text-[#7C8F6A]" />
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#1F2937] dark:bg-[#27322A] flex items-center justify-center text-white shrink-0">
+                        <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#7C8F6A] dark:text-[#8FA67C]" />
                       </div>
-                      <div>
-                        <p className="text-[11px] font-bold text-[#1F2937]">100% Reliability</p>
-                        <p className="text-[10px] text-[#556447] font-semibold">Verified Discretion</p>
+                      <div className="min-w-0">
+                        <p className="text-[10px] sm:text-[11px] font-bold text-[#1F2937] dark:text-[#F3F6F2] truncate">100% Reliability</p>
+                        <p className="text-[9px] sm:text-[10px] text-[#556447] dark:text-[#AEC89B] font-semibold truncate">Verified Discretion</p>
                       </div>
                     </motion.div>
 
                     {/* Bottom Quick Switcher Bar */}
-                    <div className="mt-4 pt-3 border-t border-[#E2DFD8] flex items-center justify-between text-xs">
-                      <span className="text-[#6B7280] font-medium">
+                    <div className="mt-4 pt-3 border-t border-[#E2DFD8] dark:border-[#27322A] flex items-center justify-between text-xs">
+                      <span className="text-[#6B7280] dark:text-[#A8B3A7] font-medium">
                         Lagos, Nigeria • Remote Global
                       </span>
                       <button
                         onClick={() => setHeroMode('desk')}
-                        className="text-xs font-bold text-[#556447] hover:text-[#1F2937] flex items-center gap-1 cursor-pointer"
+                        className="text-xs font-bold text-[#556447] dark:text-[#AEC89B] hover:text-[#1F2937] dark:hover:text-[#F3F6F2] flex items-center gap-1 cursor-pointer"
                       >
                         <span>Inspect Desk Simulator</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -380,10 +386,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.3 }}
                     id="hero-workspace-preview-card"
-                    className="relative bg-white rounded-3xl border border-[#E2DFD8] shadow-lg p-5 sm:p-6"
+                    className="relative bg-white dark:bg-[#181D1A] rounded-3xl border border-[#E2DFD8] dark:border-[#27322A] shadow-lg p-5 sm:p-6"
                   >
                     {/* Window Header with Portrait */}
-                    <div className="flex items-center justify-between pb-4 border-b border-[#E2DFD8]">
+                    <div className="flex items-center justify-between pb-4 border-b border-[#E2DFD8] dark:border-[#27322A]">
                       <div className="flex items-center gap-3">
                         <div className="relative shrink-0">
                           <img
@@ -392,31 +398,31 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                               (e.currentTarget as HTMLImageElement).src = '/zainab.jpg';
                             }}
                             alt="Mustapha Zainab Olabimpe"
-                            className="w-11 h-11 rounded-xl object-cover object-top border border-[#D3DCCB] shadow-2xs"
+                            className="w-11 h-11 rounded-xl object-cover object-top border border-[#D3DCCB] dark:border-[#2E3C32] shadow-2xs"
                             referrerPolicy="no-referrer"
                           />
-                          <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#7C8F6A] border-2 border-white" />
+                          <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#7C8F6A] dark:bg-[#8FA67C] border-2 border-white dark:border-[#181D1A]" />
                         </div>
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <span className="text-xs font-bold text-[#1F2937]">
+                            <span className="text-xs font-bold text-[#1F2937] dark:text-[#F3F6F2]">
                               Zainab's Executive Desk
                             </span>
-                            <ShieldCheck className="w-3.5 h-3.5 text-[#7C8F6A]" />
+                            <ShieldCheck className="w-3.5 h-3.5 text-[#7C8F6A] dark:text-[#8FA67C]" />
                           </div>
-                          <span className="text-[10px] text-[#6B7280]">
+                          <span className="text-[10px] text-[#6B7280] dark:text-[#A8B3A7]">
                             Mustapha Zainab • Live Operations
                           </span>
                         </div>
                       </div>
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#E8EDE3] text-[#556447] text-[11px] font-semibold">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#E8EDE3] dark:bg-[#1F2922] text-[#556447] dark:text-[#AEC89B] text-[11px] font-semibold">
                         <Sparkles className="w-3 h-3" />
                         Systems Active
                       </span>
                     </div>
 
                     {/* View Switcher Tabs with Animated Layout Indicator */}
-                    <div className="grid grid-cols-3 gap-1.5 mt-4 p-1 bg-[#F8F7F4] rounded-xl border border-[#E2DFD8]/70 relative">
+                    <div className="grid grid-cols-3 gap-1 mt-4 p-1 bg-[#F8F7F4] dark:bg-[#141816] rounded-xl border border-[#E2DFD8]/70 dark:border-[#27322A] relative">
                       {[
                         { id: 'daily', label: 'Tasks Queue' },
                         { id: 'systems', label: 'Workflow Hub' },
@@ -425,20 +431,20 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                         <button
                           key={tab.id}
                           onClick={() => setActiveTab(tab.id as 'daily' | 'systems' | 'calendar')}
-                          className={`relative py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer z-10 ${
+                          className={`relative py-1.5 px-1 sm:px-2 text-[11px] sm:text-xs font-semibold rounded-lg transition-colors cursor-pointer z-10 truncate ${
                             activeTab === tab.id
-                              ? 'text-[#1F2937]'
-                              : 'text-[#4B5563] hover:text-[#1F2937]'
+                              ? 'text-[#1F2937] dark:text-[#F3F6F2]'
+                              : 'text-[#4B5563] dark:text-[#A8B3A7] hover:text-[#1F2937] dark:hover:text-[#F3F6F2]'
                           }`}
                         >
                           {activeTab === tab.id && (
                             <motion.div
                               layoutId="heroDeskTabIndicator"
-                              className="absolute inset-0 bg-white rounded-lg shadow-2xs -z-10"
+                              className="absolute inset-0 bg-white dark:bg-[#222C26] rounded-lg shadow-2xs border border-transparent dark:border-[#35433A] -z-10"
                               transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                             />
                           )}
-                          <span>{tab.label}</span>
+                          <span className="truncate">{tab.label}</span>
                         </button>
                       ))}
                     </div>
@@ -449,24 +455,24 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                         <div className="space-y-2.5 animate-in fade-in duration-200">
                           {/* Live Dynamic Status Bar */}
                           <div className="flex flex-col gap-1.5 px-1 pb-1">
-                            <div className="flex items-center justify-between text-xs text-[#4B5563]">
-                              <span className="font-semibold text-[#1F2937] flex items-center gap-1.5">
-                                <Sparkles className="w-3.5 h-3.5 text-[#7C8F6A]" />
+                            <div className="flex items-center justify-between text-xs text-[#4B5563] dark:text-[#A8B3A7]">
+                              <span className="font-semibold text-[#1F2937] dark:text-[#F3F6F2] flex items-center gap-1.5">
+                                <Sparkles className="w-3.5 h-3.5 text-[#7C8F6A] dark:text-[#8FA67C]" />
                                 Interactive Task Verification
                               </span>
-                              <span className="text-xs font-bold text-[#556447] bg-[#E8EDE3] px-2 py-0.5 rounded-full">
+                              <span className="text-xs font-bold text-[#556447] dark:text-[#AEC89B] bg-[#E8EDE3] dark:bg-[#1F2922] px-2 py-0.5 rounded-full">
                                 {completedCount} / {tasks.length} Verified
                               </span>
                             </div>
-                            <div className="w-full h-1.5 bg-[#E8EDE3] rounded-full overflow-hidden">
+                            <div className="w-full h-1.5 bg-[#E8EDE3] dark:bg-[#253228] rounded-full overflow-hidden">
                               <motion.div
-                                className="h-full bg-[#7C8F6A] rounded-full"
+                                className="h-full bg-[#7C8F6A] dark:bg-[#8FA67C] rounded-full"
                                 initial={{ width: 0 }}
                                 animate={{ width: `${(completedCount / tasks.length) * 100}%` }}
                                 transition={{ duration: 0.4, ease: 'easeOut' }}
                               />
                             </div>
-                            <p className="text-[10px] text-[#6B7280]">
+                            <p className="text-[10px] text-[#6B7280] dark:text-[#768375]">
                               Tip: Click any item to simulate completing or delegating tasks in real time!
                             </p>
                           </div>
@@ -479,8 +485,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                               whileTap={{ scale: 0.98 }}
                               className={`w-full text-left p-3 rounded-xl border transition-all cursor-pointer flex items-start justify-between gap-3 ${
                                 task.completed
-                                  ? 'bg-[#F4F6F2] border-[#D3DCCB] text-[#1F2937]'
-                                  : 'bg-white border-[#E2DFD8] hover:border-[#7C8F6A]/50 shadow-2xs'
+                                  ? 'bg-[#F4F6F2] dark:bg-[#141816] border-[#D3DCCB] dark:border-[#2E3C32] text-[#1F2937] dark:text-[#F3F6F2]'
+                                  : 'bg-white dark:bg-[#181D1A] border-[#E2DFD8] dark:border-[#27322A] hover:border-[#7C8F6A]/50 shadow-2xs'
                               }`}
                             >
                               <div className="flex items-start gap-2.5">
@@ -489,27 +495,27 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                                   className="mt-0.5"
                                 >
                                   {task.completed ? (
-                                    <CheckCircle2 className="w-4 h-4 text-[#7C8F6A] shrink-0" />
+                                    <CheckCircle2 className="w-4 h-4 text-[#7C8F6A] dark:text-[#8FA67C] shrink-0" />
                                   ) : (
-                                    <div className="w-4 h-4 rounded-full border-2 border-[#D1D5DB] shrink-0 flex items-center justify-center hover:border-[#7C8F6A]" />
+                                    <div className="w-4 h-4 rounded-full border-2 border-[#D1D5DB] dark:border-[#35433A] shrink-0 flex items-center justify-center hover:border-[#7C8F6A]" />
                                   )}
                                 </motion.div>
                                 <div>
                                   <p className={`text-xs font-semibold leading-snug transition-all ${
-                                    task.completed ? 'line-through text-[#6B7280]' : 'text-[#1F2937]'
+                                    task.completed ? 'line-through text-[#6B7280] dark:text-[#768375]' : 'text-[#1F2937] dark:text-[#F3F6F2]'
                                   }`}>
                                     {task.title}
                                   </p>
                                   <span className={`inline-block mt-1 text-[10px] font-medium px-2 py-0.5 rounded border ${
                                     task.completed 
-                                      ? 'bg-white/80 border-[#D3DCCB] text-[#556447]' 
-                                      : 'bg-[#F8F7F4] border-[#E2DFD8] text-[#4B5563]'
+                                      ? 'bg-white/80 dark:bg-[#202723] border-[#D3DCCB] dark:border-[#2E3C32] text-[#556447] dark:text-[#AEC89B]' 
+                                      : 'bg-[#F8F7F4] dark:bg-[#141816] border-[#E2DFD8] dark:border-[#27322A] text-[#4B5563] dark:text-[#A8B3A7]'
                                   }`}>
                                     {task.tag}
                                   </span>
                                 </div>
                               </div>
-                              <span className="text-[10px] font-mono text-[#6B7280] shrink-0">
+                              <span className="text-[10px] font-mono text-[#6B7280] dark:text-[#768375] shrink-0">
                                 {task.time}
                               </span>
                             </motion.button>
@@ -519,47 +525,47 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
                       {activeTab === 'systems' && (
                         <div className="space-y-2.5 animate-in fade-in duration-200">
-                          <div className="p-3.5 rounded-xl bg-[#F8F7F4] border border-[#E2DFD8]">
+                          <div className="p-3.5 rounded-xl bg-[#F8F7F4] dark:bg-[#141816] border border-[#E2DFD8] dark:border-[#27322A]">
                             <div className="flex items-center justify-between">
-                              <span className="text-xs font-semibold text-[#1F2937] flex items-center gap-2">
-                                <Layers className="w-4 h-4 text-[#7C8F6A]" />
+                              <span className="text-xs font-semibold text-[#1F2937] dark:text-[#F3F6F2] flex items-center gap-2">
+                                <Layers className="w-4 h-4 text-[#7C8F6A] dark:text-[#8FA67C]" />
                                 Bimpe's Bakery Trello Board
                               </span>
-                              <span className="text-[10px] bg-[#E8EDE3] text-[#556447] px-2 py-0.5 rounded font-medium">
+                              <span className="text-[10px] bg-[#E8EDE3] dark:bg-[#1F2922] text-[#556447] dark:text-[#AEC89B] px-2 py-0.5 rounded font-medium">
                                 Active
                               </span>
                             </div>
-                            <p className="text-xs text-[#4B5563] mt-1.5">
+                            <p className="text-xs text-[#4B5563] dark:text-[#A8B3A7] mt-1.5">
                               Kanban columns for incoming customer orders, baking prep, and dispatched deliveries.
                             </p>
                           </div>
 
-                          <div className="p-3.5 rounded-xl bg-[#F8F7F4] border border-[#E2DFD8]">
+                          <div className="p-3.5 rounded-xl bg-[#F8F7F4] dark:bg-[#141816] border border-[#E2DFD8] dark:border-[#27322A]">
                             <div className="flex items-center justify-between">
-                              <span className="text-xs font-semibold text-[#1F2937] flex items-center gap-2">
-                                <FileSpreadsheet className="w-4 h-4 text-[#7C8F6A]" />
+                              <span className="text-xs font-semibold text-[#1F2937] dark:text-[#F3F6F2] flex items-center gap-2">
+                                <FileSpreadsheet className="w-4 h-4 text-[#7C8F6A] dark:text-[#8FA67C]" />
                                 Client Intake & Inquiries
                               </span>
-                              <span className="text-[10px] bg-[#E8EDE3] text-[#556447] px-2 py-0.5 rounded font-medium">
+                              <span className="text-[10px] bg-[#E8EDE3] dark:bg-[#1F2922] text-[#556447] dark:text-[#AEC89B] px-2 py-0.5 rounded font-medium">
                                 Google Forms
                               </span>
                             </div>
-                            <p className="text-xs text-[#4B5563] mt-1.5">
+                            <p className="text-xs text-[#4B5563] dark:text-[#A8B3A7] mt-1.5">
                               Standardized onboarding questions linked to consolidated records.
                             </p>
                           </div>
 
-                          <div className="p-3.5 rounded-xl bg-[#F8F7F4] border border-[#E2DFD8]">
+                          <div className="p-3.5 rounded-xl bg-[#F8F7F4] dark:bg-[#141816] border border-[#E2DFD8] dark:border-[#27322A]">
                             <div className="flex items-center justify-between">
-                              <span className="text-xs font-semibold text-[#1F2937] flex items-center gap-2">
-                                <Mail className="w-4 h-4 text-[#7C8F6A]" />
+                              <span className="text-xs font-semibold text-[#1F2937] dark:text-[#F3F6F2] flex items-center gap-2">
+                                <Mail className="w-4 h-4 text-[#7C8F6A] dark:text-[#8FA67C]" />
                                 Document Repository
                               </span>
-                              <span className="text-[10px] bg-[#E8EDE3] text-[#556447] px-2 py-0.5 rounded font-medium">
+                              <span className="text-[10px] bg-[#E8EDE3] dark:bg-[#1F2922] text-[#556447] dark:text-[#AEC89B] px-2 py-0.5 rounded font-medium">
                                 Google Drive
                               </span>
                             </div>
-                            <p className="text-xs text-[#4B5563] mt-1.5">
+                            <p className="text-xs text-[#4B5563] dark:text-[#A8B3A7] mt-1.5">
                               Categorized folder hierarchies for business documents & records.
                             </p>
                           </div>
@@ -568,34 +574,34 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
                       {activeTab === 'calendar' && (
                         <div className="space-y-2.5 animate-in fade-in duration-200">
-                          <div className="flex items-center justify-between text-xs text-[#4B5563] px-1">
+                          <div className="flex items-center justify-between text-xs text-[#4B5563] dark:text-[#A8B3A7] px-1">
                             <span className="font-medium flex items-center gap-1.5">
-                              <Calendar className="w-3.5 h-3.5 text-[#7C8F6A]" />
+                              <Calendar className="w-3.5 h-3.5 text-[#7C8F6A] dark:text-[#8FA67C]" />
                               Structured Time Blocks
                             </span>
                             <span className="text-[11px] font-mono">Mon - Fri</span>
                           </div>
 
-                          <div className="p-3 rounded-xl bg-[#F8F7F4] border-l-4 border-l-[#7C8F6A] border border-[#E2DFD8]/60">
-                            <p className="text-xs font-bold text-[#1F2937]">Morning Administrative Triage</p>
-                            <p className="text-[11px] text-[#4B5563] mt-0.5">Inbox cleanup, priority flags, daily agenda distribution</p>
-                            <span className="text-[10px] font-mono text-[#7C8F6A] font-semibold mt-1 inline-block">
+                          <div className="p-3 rounded-xl bg-[#F8F7F4] dark:bg-[#141816] border-l-4 border-l-[#7C8F6A] dark:border-l-[#8FA67C] border border-[#E2DFD8]/60 dark:border-[#27322A]">
+                            <p className="text-xs font-bold text-[#1F2937] dark:text-[#F3F6F2]">Morning Administrative Triage</p>
+                            <p className="text-[11px] text-[#4B5563] dark:text-[#A8B3A7] mt-0.5">Inbox cleanup, priority flags, daily agenda distribution</p>
+                            <span className="text-[10px] font-mono text-[#7C8F6A] dark:text-[#8FA67C] font-semibold mt-1 inline-block">
                               08:00 - 10:00 AM
                             </span>
                           </div>
 
-                          <div className="p-3 rounded-xl bg-[#F8F7F4] border-l-4 border-l-[#4B5563] border border-[#E2DFD8]/60">
-                            <p className="text-xs font-bold text-[#1F2937]">Deep Execution: Data & Research</p>
-                            <p className="text-[11px] text-[#4B5563] mt-0.5">Spreadsheet audits, data entry, market research briefs</p>
-                            <span className="text-[10px] font-mono text-[#4B5563] font-semibold mt-1 inline-block">
+                          <div className="p-3 rounded-xl bg-[#F8F7F4] dark:bg-[#141816] border-l-4 border-l-[#4B5563] dark:border-l-[#6B7280] border border-[#E2DFD8]/60 dark:border-[#27322A]">
+                            <p className="text-xs font-bold text-[#1F2937] dark:text-[#F3F6F2]">Deep Execution: Data & Research</p>
+                            <p className="text-[11px] text-[#4B5563] dark:text-[#A8B3A7] mt-0.5">Spreadsheet audits, data entry, market research briefs</p>
+                            <span className="text-[10px] font-mono text-[#4B5563] dark:text-[#A8B3A7] font-semibold mt-1 inline-block">
                               10:30 - 02:00 PM
                             </span>
                           </div>
 
-                          <div className="p-3 rounded-xl bg-[#F8F7F4] border-l-4 border-l-[#7C8F6A] border border-[#E2DFD8]/60">
-                            <p className="text-xs font-bold text-[#1F2937]">Daily Wrap-Up & Next-Day Prep</p>
-                            <p className="text-[11px] text-[#4B5563] mt-0.5">Status summary, client deliverables handoff, schedule review</p>
-                            <span className="text-[10px] font-mono text-[#7C8F6A] font-semibold mt-1 inline-block">
+                          <div className="p-3 rounded-xl bg-[#F8F7F4] dark:bg-[#141816] border-l-4 border-l-[#7C8F6A] dark:border-l-[#8FA67C] border border-[#E2DFD8]/60 dark:border-[#27322A]">
+                            <p className="text-xs font-bold text-[#1F2937] dark:text-[#F3F6F2]">Daily Wrap-Up & Next-Day Prep</p>
+                            <p className="text-[11px] text-[#4B5563] dark:text-[#A8B3A7] mt-0.5">Status summary, client deliverables handoff, schedule review</p>
+                            <span className="text-[10px] font-mono text-[#7C8F6A] dark:text-[#8FA67C] font-semibold mt-1 inline-block">
                               03:00 - 04:30 PM
                             </span>
                           </div>
@@ -604,14 +610,14 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     </div>
 
                     {/* Floating Quick Action Footer */}
-                    <div className="mt-4 pt-3 border-t border-[#E2DFD8] flex items-center justify-between text-xs">
-                      <span className="text-[#4B5563] flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-[#7C8F6A]" />
+                    <div className="mt-4 pt-3 border-t border-[#E2DFD8] dark:border-[#27322A] flex items-center justify-between text-xs">
+                      <span className="text-[#4B5563] dark:text-[#A8B3A7] flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-[#7C8F6A] dark:bg-[#8FA67C]" />
                         Reliable • Structured • Confidential
                       </span>
                       <button
                         onClick={() => onNavigate('contact')}
-                        className="font-semibold text-[#1F2937] hover:text-[#7C8F6A] transition-colors flex items-center gap-1 cursor-pointer"
+                        className="font-semibold text-[#1F2937] dark:text-[#F3F6F2] hover:text-[#7C8F6A] dark:hover:text-[#8FA67C] transition-colors flex items-center gap-1 cursor-pointer"
                       >
                         Book Support <ArrowRight className="w-3 h-3" />
                       </button>

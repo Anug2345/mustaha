@@ -86,15 +86,15 @@ export const SelectedWork: React.FC = () => {
 
   const getCategoryIcon = (category: string) => {
     if (category.includes('Project Management') || category.includes('Workflow')) {
-      return <Layers className="w-5 h-5 text-[#556447]" />;
+      return <Layers className="w-5 h-5 text-[#556447] dark:text-[#AEC89B]" />;
     }
     if (category.includes('Form')) {
-      return <FileText className="w-5 h-5 text-[#556447]" />;
+      return <FileText className="w-5 h-5 text-[#556447] dark:text-[#AEC89B]" />;
     }
     if (category.includes('Data') || category.includes('Spreadsheet')) {
-      return <FileSpreadsheet className="w-5 h-5 text-[#556447]" />;
+      return <FileSpreadsheet className="w-5 h-5 text-[#556447] dark:text-[#AEC89B]" />;
     }
-    return <FolderArchive className="w-5 h-5 text-[#556447]" />;
+    return <FolderArchive className="w-5 h-5 text-[#556447] dark:text-[#AEC89B]" />;
   };
 
   const filteredProjects = SELECTED_PROJECTS.filter(project => {
@@ -123,21 +123,21 @@ export const SelectedWork: React.FC = () => {
     <section 
       ref={sectionRef}
       id="work" 
-      className="relative py-20 md:py-28 bg-[#F8F7F4] border-t border-[#E2DFD8] overflow-hidden"
+      className="relative py-16 md:py-28 bg-[#F8F7F4] dark:bg-[#111413] border-t border-[#E2DFD8] dark:border-[#27322A] overflow-hidden"
     >
       {/* Parallax Subtle Background Accents */}
       <div className="absolute inset-0 pointer-events-none -z-0 overflow-hidden">
         <motion.div
           style={{ y: bgOrb1Y }}
-          className="absolute -top-16 right-[-60px] w-96 h-96 bg-[#E8EDE3]/40 rounded-full blur-3xl"
+          className="absolute -top-16 right-[-60px] w-96 h-96 bg-[#E8EDE3]/40 dark:bg-[#202723]/30 rounded-full blur-3xl"
         />
         <motion.div
           style={{ y: bgOrb2Y }}
-          className="absolute -bottom-24 left-[-80px] w-96 h-96 bg-[#7C8F6A]/10 rounded-full blur-3xl"
+          className="absolute -bottom-24 left-[-80px] w-96 h-96 bg-[#7C8F6A]/10 dark:bg-[#8FA67C]/10 rounded-full blur-3xl"
         />
         <motion.div
           style={{ y: watermarkShift, scale: watermarkScale }}
-          className="absolute top-1/2 right-10 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] text-8xl font-black text-[#1F2937] tracking-widest hidden xl:block uppercase will-change-transform"
+          className="absolute top-1/2 right-10 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] dark:opacity-[0.05] text-8xl font-black text-[#1F2937] dark:text-[#F3F6F2] tracking-widest hidden xl:block uppercase will-change-transform"
         >
           ARTIFACTS
         </motion.div>
@@ -155,21 +155,21 @@ export const SelectedWork: React.FC = () => {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 will-change-transform"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] text-[#556447] text-xs font-bold tracking-wider uppercase mb-3">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] dark:bg-[#1F2922] text-[#556447] dark:text-[#AEC89B] text-xs font-bold tracking-wider uppercase mb-3">
               <FolderGit2 className="w-3.5 h-3.5" />
               Verified Artifacts & Systems
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#1F2937] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#1F2937] dark:text-[#F3F6F2] tracking-tight">
               Selected Work
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-[#4B5563] leading-relaxed">
+            <p className="mt-4 text-base sm:text-lg text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
               Real-world administrative frameworks, workflow boards, client intake pipelines, and structured repositories built to eliminate friction.
             </p>
           </div>
 
-          <div className="text-xs text-[#6B7280]">
-            <span className="inline-flex items-center gap-1.5 bg-white border border-[#E2DFD8] px-3 py-1.5 rounded-lg shadow-2xs">
-              <Info className="w-3.5 h-3.5 text-[#7C8F6A]" />
+          <div className="text-xs text-[#6B7280] dark:text-[#A8B3A7]">
+            <span className="inline-flex items-center gap-1.5 bg-white dark:bg-[#181D1A] border border-[#E2DFD8] dark:border-[#27322A] px-3 py-1.5 rounded-lg shadow-2xs">
+              <Info className="w-3.5 h-3.5 text-[#7C8F6A] dark:text-[#8FA67C]" />
               Authentic work artifacts • Direct access links
             </span>
           </div>
@@ -178,9 +178,9 @@ export const SelectedWork: React.FC = () => {
         {/* Interactive Filter Tabs with Calibrated Velocity */}
         <motion.div 
           style={{ y: filterTabsY }}
-          className="mt-10 flex items-center justify-start sm:justify-center overflow-x-auto pb-2 scrollbar-none will-change-transform"
+          className="mt-8 sm:mt-10 flex items-center justify-start sm:justify-center overflow-x-auto pb-2 scrollbar-none will-change-transform px-0.5"
         >
-          <div className="inline-flex p-1 bg-white border border-[#E2DFD8] rounded-xl shadow-2xs">
+          <div className="inline-flex p-1 bg-white dark:bg-[#181D1A] border border-[#E2DFD8] dark:border-[#27322A] rounded-xl shadow-2xs">
             {[
               { id: 'all', label: 'All Artifacts (4)' },
               { id: 'boards', label: 'Project Boards' },
@@ -190,14 +190,14 @@ export const SelectedWork: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveCategory(tab.id as 'all' | 'boards' | 'intake' | 'storage')}
-                className={`relative px-4 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer z-10 ${
-                  activeCategory === tab.id ? 'text-[#1F2937]' : 'text-[#6B7280] hover:text-[#1F2937]'
+                className={`relative px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer z-10 ${
+                  activeCategory === tab.id ? 'text-[#1F2937] dark:text-[#F3F6F2]' : 'text-[#6B7280] dark:text-[#A8B3A7] hover:text-[#1F2937] dark:hover:text-[#F3F6F2]'
                 }`}
               >
                 {activeCategory === tab.id && (
                   <motion.div
                     layoutId="workCategoryPill"
-                    className="absolute inset-0 bg-[#E8EDE3] rounded-lg -z-10"
+                    className="absolute inset-0 bg-[#E8EDE3] dark:bg-[#222C26] rounded-lg -z-10"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -210,7 +210,7 @@ export const SelectedWork: React.FC = () => {
         {/* Selected Work Grid with Layered Parallax Movement & Animated Layout */}
         <motion.div 
           layout
-          className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 [perspective:1200px]"
+          className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 [perspective:1200px]"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
@@ -230,42 +230,42 @@ export const SelectedWork: React.FC = () => {
                     layout: { duration: 0.3 }
                   }}
                   whileHover={{ y: -6, scale: 1.015 }}
-                  className="bg-white rounded-2xl border border-[#E2DFD8] p-7 sm:p-8 shadow-2xs hover:shadow-md hover:border-[#7C8F6A] transition-all duration-200 flex flex-col justify-between group relative overflow-hidden"
+                  className="bg-white dark:bg-[#181D1A] rounded-2xl border border-[#E2DFD8] dark:border-[#27322A] p-5 sm:p-8 shadow-2xs hover:shadow-md hover:border-[#7C8F6A] dark:hover:border-[#8FA67C] transition-all duration-200 flex flex-col justify-between group relative overflow-hidden"
                 >
                   <div>
                     {/* Header with Icon and Category Tag */}
                     <div className="flex items-center justify-between gap-2 mb-4">
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="w-11 h-11 rounded-xl bg-[#E8EDE3] flex items-center justify-center group-hover:bg-[#7C8F6A] transition-colors shadow-2xs"
+                        className="w-11 h-11 rounded-xl bg-[#E8EDE3] dark:bg-[#202723] flex items-center justify-center group-hover:bg-[#7C8F6A] dark:group-hover:bg-[#8FA67C] transition-colors shadow-2xs shrink-0"
                       >
                         <span className="group-hover:brightness-200 transition-all">
                           {getCategoryIcon(project.category)}
                         </span>
                       </motion.div>
-                      <span className="px-3 py-1 rounded-full bg-[#F4F6F2] border border-[#E2DFD8] text-[11px] font-semibold text-[#556447]">
+                      <span className="px-3 py-1 rounded-full bg-[#F4F6F2] dark:bg-[#141816] border border-[#E2DFD8] dark:border-[#27322A] text-[11px] font-semibold text-[#556447] dark:text-[#AEC89B] truncate">
                         {project.category}
                       </span>
                     </div>
 
                     {/* Project Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#1F2937] group-hover:text-[#556447] transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[#1F2937] dark:text-[#F3F6F2] group-hover:text-[#556447] dark:group-hover:text-[#AEC89B] transition-colors">
                       {project.name}
                     </h3>
-                    <p className="mt-3 text-sm text-[#4B5563] leading-relaxed">
+                    <p className="mt-3 text-sm text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
                       {project.description}
                     </p>
 
                     {/* Key Operational Highlights */}
-                    <div className="mt-6 pt-5 border-t border-[#E2DFD8]/70">
-                      <h4 className="text-xs font-bold text-[#1F2937] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-[#7C8F6A]" />
+                    <div className="mt-6 pt-5 border-t border-[#E2DFD8]/70 dark:border-[#27322A]">
+                      <h4 className="text-xs font-bold text-[#1F2937] dark:text-[#F3F6F2] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-[#7C8F6A] dark:text-[#8FA67C]" />
                         Operational Highlights:
                       </h4>
                       <ul className="space-y-2">
                         {project.highlights.map((highlight, idx) => (
-                          <li key={idx} className="flex items-start gap-2.5 text-xs text-[#4B5563] leading-relaxed">
-                            <span className="w-4 h-4 rounded-full bg-[#E8EDE3] text-[#556447] flex items-center justify-center shrink-0 mt-0.5">
+                          <li key={idx} className="flex items-start gap-2.5 text-xs text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
+                            <span className="w-4 h-4 rounded-full bg-[#E8EDE3] dark:bg-[#253228] text-[#556447] dark:text-[#AEC89B] flex items-center justify-center shrink-0 mt-0.5">
                               <Check className="w-2.5 h-2.5 stroke-[3]" />
                             </span>
                             <span>{highlight}</span>
@@ -279,7 +279,7 @@ export const SelectedWork: React.FC = () => {
                       {project.tools.map((tool, idx) => (
                         <span
                           key={idx}
-                          className="px-2.5 py-1 rounded-md bg-[#F8F7F4] border border-[#E2DFD8] text-[11px] font-medium text-[#4B5563]"
+                          className="px-2.5 py-1 rounded-md bg-[#F8F7F4] dark:bg-[#141816] border border-[#E2DFD8] dark:border-[#27322A] text-[11px] font-medium text-[#4B5563] dark:text-[#A8B3A7]"
                         >
                           {tool}
                         </span>
@@ -288,28 +288,28 @@ export const SelectedWork: React.FC = () => {
                   </div>
 
                   {/* Action Buttons with Tactile Feedback */}
-                  <div className="mt-8 pt-5 border-t border-[#E2DFD8]/60 flex items-center justify-between gap-3">
+                  <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-[#E2DFD8]/60 dark:border-[#27322A] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
                     <motion.a
                       id={`open-project-link-${project.id}`}
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.03, y: -1, backgroundColor: '#6B7D5A', boxShadow: '0 4px 14px rgba(85, 100, 71, 0.25)' }}
+                      whileHover={{ scale: 1.03, y: -1 }}
                       whileTap={{ scale: 0.96 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1F2937] text-white text-xs sm:text-sm font-semibold transition-colors shadow-2xs"
+                      className="min-h-[44px] justify-center inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1F2937] dark:bg-[#8FA67C] hover:bg-[#6B7D5A] dark:hover:bg-[#9EBA8B] text-white dark:text-[#111413] text-xs sm:text-sm font-semibold transition-colors shadow-2xs"
                     >
                       <span>Open Artifact</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-[#A3B899]" />
+                      <ExternalLink className="w-3.5 h-3.5 text-[#A3B899] dark:text-[#111413]" />
                     </motion.a>
 
                     <motion.button
                       id={`preview-details-btn-${project.id}`}
                       onClick={() => setActiveProjectModal(project)}
-                      whileHover={{ scale: 1.02, y: -1, backgroundColor: '#E8EDE3', borderColor: '#7C8F6A' }}
+                      whileHover={{ scale: 1.02, y: -1 }}
                       whileTap={{ scale: 0.96 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                      className="px-4 py-2.5 rounded-xl bg-[#F8F7F4] border border-[#E2DFD8] text-xs sm:text-sm font-semibold text-[#1F2937] transition-all cursor-pointer"
+                      className="min-h-[44px] justify-center px-4 py-2.5 rounded-xl bg-[#F8F7F4] dark:bg-[#202723] hover:bg-[#E8EDE3] dark:hover:bg-[#28352b] border border-[#E2DFD8] dark:border-[#2E3C32] text-xs sm:text-sm font-semibold text-[#1F2937] dark:text-[#F3F6F2] transition-all cursor-pointer"
                     >
                       Inspect Details
                     </motion.button>
@@ -330,7 +330,7 @@ export const SelectedWork: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 dark:bg-black/80 backdrop-blur-xs"
             onClick={() => setActiveProjectModal(null)}
           >
             <motion.div
@@ -339,26 +339,26 @@ export const SelectedWork: React.FC = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: 'spring', duration: 0.35 }}
-              className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-[#D3DCCB] shadow-2xl relative overflow-hidden"
+              className="bg-white dark:bg-[#181D1A] rounded-2xl sm:rounded-3xl max-w-2xl w-full p-5 sm:p-8 border border-[#D3DCCB] dark:border-[#2E3C32] shadow-2xl relative overflow-y-auto max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 id="close-project-modal-btn"
                 onClick={() => setActiveProjectModal(null)}
-                className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#F4F6F2] hover:bg-[#E8EDE3] text-[#4B5563] flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 rounded-full bg-[#F4F6F2] dark:bg-[#202723] hover:bg-[#E8EDE3] dark:hover:bg-[#28352b] text-[#4B5563] dark:text-[#A8B3A7] flex items-center justify-center transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-3 py-1 rounded-md bg-[#E8EDE3] text-[#556447] text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-md bg-[#E8EDE3] dark:bg-[#253228] text-[#556447] dark:text-[#AEC89B] text-xs font-bold uppercase tracking-wider">
                   {activeProjectModal.category}
                 </span>
-                <span className="text-xs text-[#6B7280]">Verified Case Study</span>
+                <span className="text-xs text-[#6B7280] dark:text-[#869485]">Verified Case Study</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#1F2937] tracking-tight">
+              <h3 className="text-xl sm:text-3xl font-bold text-[#1F2937] dark:text-[#F3F6F2] tracking-tight pr-8">
                 {activeProjectModal.name}
               </h3>
 
@@ -370,25 +370,25 @@ export const SelectedWork: React.FC = () => {
                 };
                 return (
                   <>
-                    <p className="mt-3 text-sm sm:text-base text-[#4B5563] leading-relaxed">
+                    <p className="mt-3 text-sm sm:text-base text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
                       {caseDetail.challenge}
                     </p>
 
-                    <div className="mt-6 space-y-4">
-                      <div className="p-4 rounded-xl bg-[#F8F7F4] border border-[#E2DFD8]">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F2937] mb-1">
+                    <div className="mt-5 sm:mt-6 space-y-3.5 sm:space-y-4">
+                      <div className="p-3.5 sm:p-4 rounded-xl bg-[#F8F7F4] dark:bg-[#141816] border border-[#E2DFD8] dark:border-[#27322A]">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F2937] dark:text-[#F3F6F2] mb-1">
                           System Architecture & Approach
                         </h4>
-                        <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
                           {caseDetail.solution}
                         </p>
                       </div>
 
-                      <div className="p-4 rounded-xl bg-[#E8EDE3]/60 border border-[#D3DCCB]">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#556447] mb-1">
+                      <div className="p-3.5 sm:p-4 rounded-xl bg-[#E8EDE3]/60 dark:bg-[#1F2922] border border-[#D3DCCB] dark:border-[#2E3C32]">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#556447] dark:text-[#AEC89B] mb-1">
                           Direct Business Impact
                         </h4>
-                        <p className="text-xs sm:text-sm text-[#1F2937] font-medium leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#1F2937] dark:text-[#F3F6F2] font-medium leading-relaxed">
                           {caseDetail.impact}
                         </p>
                       </div>
@@ -397,11 +397,11 @@ export const SelectedWork: React.FC = () => {
                 );
               })()}
 
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-5 sm:mt-6 flex flex-wrap gap-2">
                 {activeProjectModal.tools.map((tool, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 rounded-md bg-[#F4F6F2] text-[#1F2937] text-xs font-medium border border-[#E2DFD8]"
+                    className="px-2.5 py-1 rounded-md bg-[#F4F6F2] dark:bg-[#141816] text-[#1F2937] dark:text-[#F3F6F2] text-xs font-medium border border-[#E2DFD8] dark:border-[#27322A]"
                   >
                     {tool}
                   </span>
@@ -409,12 +409,12 @@ export const SelectedWork: React.FC = () => {
               </div>
 
               {/* Footer with Prev/Next and External Link */}
-              <div className="mt-8 pt-5 border-t border-[#E2DFD8] flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
+              <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-[#E2DFD8] dark:border-[#27322A] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+                <div className="flex items-center justify-center gap-2">
                   <button
                     type="button"
                     onClick={handlePrevModalProject}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F8F7F4] hover:bg-[#E8EDE3] text-xs font-semibold text-[#1F2937] border border-[#E2DFD8] transition-colors cursor-pointer"
+                    className="min-h-[38px] inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F8F7F4] dark:bg-[#202723] hover:bg-[#E8EDE3] dark:hover:bg-[#28352b] text-xs font-semibold text-[#1F2937] dark:text-[#F3F6F2] border border-[#E2DFD8] dark:border-[#2E3C32] transition-colors cursor-pointer"
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
                     <span>Prev</span>
@@ -422,17 +422,17 @@ export const SelectedWork: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleNextModalProject}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F8F7F4] hover:bg-[#E8EDE3] text-xs font-semibold text-[#1F2937] border border-[#E2DFD8] transition-colors cursor-pointer"
+                    className="min-h-[38px] inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#F8F7F4] dark:bg-[#202723] hover:bg-[#E8EDE3] dark:hover:bg-[#28352b] text-xs font-semibold text-[#1F2937] dark:text-[#F3F6F2] border border-[#E2DFD8] dark:border-[#2E3C32] transition-colors cursor-pointer"
                   >
                     <span>Next</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                <div className="flex items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
                   <button
                     onClick={() => setActiveProjectModal(null)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold text-[#6B7280] hover:text-[#1F2937] transition-colors cursor-pointer"
+                    className="min-h-[40px] px-3.5 py-2 rounded-xl text-xs font-semibold text-[#6B7280] dark:text-[#869485] hover:text-[#1F2937] dark:hover:text-[#F3F6F2] transition-colors cursor-pointer"
                   >
                     Close
                   </button>
@@ -440,7 +440,7 @@ export const SelectedWork: React.FC = () => {
                     href={activeProjectModal.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#556447] hover:bg-[#445038] text-white text-xs font-semibold transition-colors shadow-xs"
+                    className="min-h-[40px] flex-1 sm:flex-initial justify-center inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#556447] dark:bg-[#8FA67C] hover:bg-[#445038] dark:hover:bg-[#9EBA8B] text-white dark:text-[#111413] text-xs font-semibold transition-colors shadow-xs"
                   >
                     <span>Open Live Artifact</span>
                     <ExternalLink className="w-3.5 h-3.5" />

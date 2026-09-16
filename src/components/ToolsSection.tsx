@@ -150,9 +150,9 @@ export const ToolsSection: React.FC = () => {
   const matchedCount = Object.values(selectedMyStack).filter(Boolean).length;
 
   return (
-    <section id="tools" className="py-20 md:py-28 bg-[#F4F6F2]/70 border-t border-[#E2DFD8] relative overflow-hidden">
+    <section id="tools" className="py-16 md:py-28 bg-[#F4F6F2]/70 dark:bg-[#141816] border-t border-[#E2DFD8] dark:border-[#27322A] relative overflow-hidden">
       {/* Ambient background decoration */}
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-[#E8EDE3]/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-[#E8EDE3]/30 dark:bg-[#202723]/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -164,31 +164,31 @@ export const ToolsSection: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] text-[#556447] text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] dark:bg-[#1F2922] text-[#556447] dark:text-[#AEC89B] text-xs font-bold tracking-wider uppercase mb-3">
             <Laptop className="w-3.5 h-3.5" />
             Stack & Systems
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#1F2937] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#1F2937] dark:text-[#F3F6F2] tracking-tight">
             Tools & Software
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#4B5563] leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
             Proficient across industry-standard productivity, scheduling, project tracking, and spreadsheet software to integrate seamlessly into your current workflow.
           </p>
 
           {/* Interactive "Check Stack Match" Badge */}
-          <div className="mt-6 inline-flex items-center gap-2 p-2 px-4 rounded-xl bg-white border border-[#E2DFD8] shadow-2xs text-xs">
-            <span className="font-semibold text-[#1F2937]">Your Stack Match:</span>
-            <span className="font-bold text-[#556447] bg-[#E8EDE3] px-2 py-0.5 rounded-md flex items-center gap-1">
+          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 p-2 px-3 sm:px-4 rounded-xl bg-white dark:bg-[#181D1A] border border-[#E2DFD8] dark:border-[#27322A] shadow-2xs text-xs">
+            <span className="font-semibold text-[#1F2937] dark:text-[#F3F6F2]">Your Stack Match:</span>
+            <span className="font-bold text-[#556447] dark:text-[#AEC89B] bg-[#E8EDE3] dark:bg-[#222C26] px-2 py-0.5 rounded-md flex items-center gap-1">
               <Check className="w-3 h-3 stroke-[3]" />
               {matchedCount} of {TOOLS.length} Ready
             </span>
-            <span className="text-[#6B7280] hidden sm:inline">• Click the badge on any tool to match your tools!</span>
+            <span className="text-[#6B7280] dark:text-[#869485] hidden sm:inline">• Click the badge on any tool to match your tools!</span>
           </div>
         </motion.div>
 
         {/* Filter Tabs */}
-        <div className="mt-10 flex items-center justify-center">
-          <div className="inline-flex p-1 bg-white border border-[#E2DFD8] rounded-xl shadow-2xs">
+        <div className="mt-8 sm:mt-10 flex items-center justify-start sm:justify-center overflow-x-auto pb-2 scrollbar-none px-0.5">
+          <div className="inline-flex p-1 bg-white dark:bg-[#181D1A] border border-[#E2DFD8] dark:border-[#27322A] rounded-xl shadow-2xs">
             {[
               { id: 'all', label: 'All Tools (6)' },
               { id: 'productivity', label: 'Docs & Spreadsheets' },
@@ -198,14 +198,14 @@ export const ToolsSection: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveCategory(tab.id as 'all' | 'productivity' | 'pm' | 'scheduling')}
-                className={`relative px-4 py-2 text-xs font-semibold rounded-lg transition-colors cursor-pointer z-10 ${
-                  activeCategory === tab.id ? 'text-[#1F2937]' : 'text-[#6B7280] hover:text-[#1F2937]'
+                className={`relative px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap cursor-pointer z-10 ${
+                  activeCategory === tab.id ? 'text-[#1F2937] dark:text-[#F3F6F2]' : 'text-[#6B7280] dark:text-[#A8B3A7] hover:text-[#1F2937] dark:hover:text-[#F3F6F2]'
                 }`}
               >
                 {activeCategory === tab.id && (
                   <motion.div
                     layoutId="toolsFilterPill"
-                    className="absolute inset-0 bg-[#E8EDE3] rounded-lg -z-10"
+                    className="absolute inset-0 bg-[#E8EDE3] dark:bg-[#222C26] rounded-lg -z-10"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -222,7 +222,7 @@ export const ToolsSection: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]"
+          className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 [perspective:1200px]"
         >
           <AnimatePresence mode="popLayout">
             {filteredTools.map((tool, index) => {
@@ -238,10 +238,10 @@ export const ToolsSection: React.FC = () => {
                   variants={toolCardVariants}
                   maxTilt={7}
                   scale={1.03}
-                  className={`bg-white rounded-2xl p-6 border transition-colors duration-200 flex flex-col justify-between relative overflow-hidden ${
+                  className={`bg-white dark:bg-[#181D1A] rounded-2xl p-5 sm:p-6 border transition-colors duration-200 flex flex-col justify-between relative overflow-hidden ${
                     isInMyStack 
-                      ? 'border-[#7C8F6A] shadow-md ring-1 ring-[#7C8F6A]/30' 
-                      : 'border-[#E2DFD8] shadow-2xs hover:shadow-xl hover:border-[#7C8F6A]/50'
+                      ? 'border-[#7C8F6A] dark:border-[#8FA67C] shadow-md ring-1 ring-[#7C8F6A]/30 dark:ring-[#8FA67C]/30' 
+                      : 'border-[#E2DFD8] dark:border-[#27322A] shadow-2xs hover:shadow-xl hover:border-[#7C8F6A]/50 dark:hover:border-[#8FA67C]/50'
                   }`}
                 >
                   <div>
@@ -255,10 +255,10 @@ export const ToolsSection: React.FC = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.92 }}
                         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border transition-colors cursor-pointer ${
+                        className={`min-h-[36px] inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-semibold border transition-colors cursor-pointer ${
                           isInMyStack
-                            ? 'bg-[#556447] border-[#556447] text-white shadow-2xs'
-                            : 'bg-[#F8F7F4] border-[#E2DFD8] text-[#4B5563] hover:border-[#7C8F6A]'
+                            ? 'bg-[#556447] dark:bg-[#8FA67C] border-[#556447] dark:border-[#8FA67C] text-white dark:text-[#111413] shadow-2xs'
+                            : 'bg-[#F8F7F4] dark:bg-[#202723] border-[#E2DFD8] dark:border-[#2E3C32] text-[#4B5563] dark:text-[#A8B3A7] hover:border-[#7C8F6A] dark:hover:border-[#8FA67C]'
                         }`}
                       >
                         {isInMyStack ? (
@@ -272,26 +272,26 @@ export const ToolsSection: React.FC = () => {
                       </motion.button>
                     </div>
 
-                    <h3 className="text-lg font-bold text-[#1F2937]">
+                    <h3 className="text-lg font-bold text-[#1F2937] dark:text-[#F3F6F2]">
                       {tool.name}
                     </h3>
-                    <span className="inline-block text-xs font-medium text-[#6B7280] mb-2">
+                    <span className="inline-block text-xs font-medium text-[#6B7280] dark:text-[#869485] mb-2">
                       {tool.category}
                     </span>
 
-                    <p className="text-xs text-[#4B5563] leading-relaxed">
+                    <p className="text-xs text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
                       {tool.description}
                     </p>
 
                     {/* Animated Proficiency Fill Meter */}
-                    <div className="mt-4 pt-3 border-t border-[#E2DFD8]/60">
+                    <div className="mt-4 pt-3 border-t border-[#E2DFD8]/60 dark:border-[#27322A]">
                       <div className="flex items-center justify-between text-[11px] mb-1.5">
-                        <span className="font-semibold text-[#1F2937]">Proficiency Rating</span>
-                        <span className="font-mono font-bold text-[#556447]">{extra.percentage}%</span>
+                        <span className="font-semibold text-[#1F2937] dark:text-[#F3F6F2]">Proficiency Rating</span>
+                        <span className="font-mono font-bold text-[#556447] dark:text-[#AEC89B]">{extra.percentage}%</span>
                       </div>
-                      <div className="w-full h-1.5 bg-[#E8EDE3] rounded-full overflow-hidden">
+                      <div className="w-full h-1.5 bg-[#E8EDE3] dark:bg-[#202723] rounded-full overflow-hidden">
                         <motion.div
-                          className="h-full bg-gradient-to-r from-[#7C8F6A] to-[#556447] rounded-full"
+                          className="h-full bg-gradient-to-r from-[#7C8F6A] to-[#556447] dark:from-[#8FA67C] dark:to-[#AEC89B] rounded-full"
                           initial={{ width: 0 }}
                           whileInView={{ width: `${extra.percentage}%` }}
                           viewport={{ once: true }}
@@ -308,13 +308,13 @@ export const ToolsSection: React.FC = () => {
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.25 }}
-                          className="overflow-hidden mt-3 p-3 bg-[#F4F6F2] rounded-xl border border-[#D3DCCB]/60 text-xs"
+                          className="overflow-hidden mt-3 p-3 bg-[#F4F6F2] dark:bg-[#141816] rounded-xl border border-[#D3DCCB]/60 dark:border-[#27322A] text-xs"
                         >
-                          <p className="font-bold text-[#1F2937] flex items-center gap-1 mb-1">
-                            <Sparkles className="w-3 h-3 text-[#7C8F6A]" />
+                          <p className="font-bold text-[#1F2937] dark:text-[#F3F6F2] flex items-center gap-1 mb-1">
+                            <Sparkles className="w-3 h-3 text-[#7C8F6A] dark:text-[#8FA67C]" />
                             Zainab's Practical Implementation:
                           </p>
-                          <p className="text-[#4B5563] leading-relaxed text-[11px]">
+                          <p className="text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed text-[11px]">
                             {extra.tip}
                           </p>
                         </motion.div>
@@ -323,8 +323,8 @@ export const ToolsSection: React.FC = () => {
                   </div>
 
                   {/* Card Footer with Pro-Tip toggle */}
-                  <div className="mt-5 pt-3 border-t border-[#E2DFD8]/60 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-[#556447] bg-[#E8EDE3] px-2 py-0.5 rounded">
+                  <div className="mt-5 pt-3 border-t border-[#E2DFD8]/60 dark:border-[#27322A] flex items-center justify-between">
+                    <span className="text-[11px] font-semibold text-[#556447] dark:text-[#AEC89B] bg-[#E8EDE3] dark:bg-[#222C26] px-2 py-0.5 rounded">
                       {tool.proficiency}
                     </span>
 
@@ -333,7 +333,7 @@ export const ToolsSection: React.FC = () => {
                       onClick={() => setExpandedTipTool(isTipOpen ? null : tool.name)}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.94 }}
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#556447] hover:text-[#1F2937] p-1 rounded transition-colors cursor-pointer"
+                      className="min-h-[36px] inline-flex items-center gap-1 text-[11px] font-semibold text-[#556447] dark:text-[#AEC89B] hover:text-[#1F2937] dark:hover:text-[#F3F6F2] px-2 py-1 rounded transition-colors cursor-pointer"
                     >
                       <span>{isTipOpen ? 'Close Tip' : 'Workflow Tip'}</span>
                       <motion.span animate={{ rotate: isTipOpen ? 180 : 0 }} transition={{ type: 'spring', stiffness: 300, damping: 20 }}>

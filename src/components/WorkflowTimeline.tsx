@@ -43,9 +43,9 @@ export const WorkflowTimeline: React.FC = () => {
   const activeDetail = STEP_DETAILS[activeStep.step];
 
   return (
-    <section id="workflow" className="py-20 md:py-28 bg-[#F8F7F4] border-t border-[#E2DFD8] relative overflow-hidden">
+    <section id="workflow" className="py-20 md:py-28 bg-[#F8F7F4] dark:bg-[#111413] border-t border-[#E2DFD8] dark:border-[#27322A] relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-[#E8EDE3]/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-[#E8EDE3]/30 dark:bg-[#202723]/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -57,14 +57,14 @@ export const WorkflowTimeline: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] text-[#556447] text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#E8EDE3] dark:bg-[#1F2922] text-[#556447] dark:text-[#AEC89B] text-xs font-bold tracking-wider uppercase mb-3">
             <Compass className="w-3.5 h-3.5" />
             Working Methodology
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#1F2937] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#1F2937] dark:text-[#F3F6F2] tracking-tight">
             How I Work
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#4B5563] leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
             A reliable 4-step collaboration framework that takes tasks from vague ideas to clear, structured execution. Click any phase to inspect the timeline.
           </p>
         </motion.div>
@@ -72,7 +72,7 @@ export const WorkflowTimeline: React.FC = () => {
         {/* Desktop Horizontal Timeline (md and up) */}
         <div className="hidden lg:block mt-16 relative">
           {/* Animated Horizontal Line Connector with active progress fill */}
-          <div className="absolute top-12 left-12 right-12 h-1 bg-[#E2DFD8] rounded-full -z-0 overflow-hidden">
+          <div className="absolute top-12 left-12 right-12 h-1 bg-[#E2DFD8] dark:bg-[#27322A] rounded-full -z-0 overflow-hidden">
             <motion.div 
               className="h-full bg-gradient-to-r from-[#7C8F6A] via-[#556447] to-[#7C8F6A] origin-left"
               animate={{ width: `${((activeStepIndex) / (WORKFLOW_STEPS.length - 1)) * 100}%` }}
@@ -95,17 +95,17 @@ export const WorkflowTimeline: React.FC = () => {
                   transition={{ duration: 0.45, delay: index * 0.1 }}
                   whileHover={{ y: -6, scale: 1.02 }}
                   onClick={() => setActiveStepIndex(index)}
-                  className={`bg-white rounded-2xl p-6 border transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden ${
+                  className={`bg-white dark:bg-[#181D1A] rounded-2xl p-6 border transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden ${
                     isActive
-                      ? 'border-[#7C8F6A] shadow-lg ring-2 ring-[#7C8F6A]/20'
-                      : 'border-[#E2DFD8] shadow-2xs hover:border-[#7C8F6A]/50 hover:shadow-md'
+                      ? 'border-[#7C8F6A] dark:border-[#8FA67C] shadow-lg ring-2 ring-[#7C8F6A]/20 dark:ring-[#8FA67C]/20'
+                      : 'border-[#E2DFD8] dark:border-[#27322A] shadow-2xs hover:border-[#7C8F6A]/50 dark:hover:border-[#8FA67C]/50 hover:shadow-md'
                   }`}
                 >
                   {/* Top Active Indicator bar */}
                   {isActive && (
                     <motion.div 
                       layoutId="activeWorkflowStepTop"
-                      className="absolute top-0 left-0 right-0 h-1 bg-[#7C8F6A]" 
+                      className="absolute top-0 left-0 right-0 h-1 bg-[#7C8F6A] dark:bg-[#8FA67C]" 
                     />
                   )}
 
@@ -118,13 +118,13 @@ export const WorkflowTimeline: React.FC = () => {
                           backgroundColor: isActive ? '#556447' : isPast ? '#7C8F6A' : '#E8EDE3',
                           color: isActive || isPast ? '#FFFFFF' : '#556447'
                         }}
-                        className="w-12 h-12 rounded-xl font-mono font-bold text-sm flex items-center justify-center border-2 border-white shadow-xs transition-colors"
+                        className="w-12 h-12 rounded-xl font-mono font-bold text-sm flex items-center justify-center border-2 border-white dark:border-[#181D1A] shadow-xs transition-colors"
                       >
                         {step.step}
                       </motion.div>
                       
                       <span className={`text-[11px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded ${
-                        isActive ? 'bg-[#E8EDE3] text-[#556447]' : 'text-[#6B7280]'
+                        isActive ? 'bg-[#E8EDE3] dark:bg-[#253228] text-[#556447] dark:text-[#AEC89B]' : 'text-[#6B7280] dark:text-[#869485]'
                       }`}>
                         Phase 0{index + 1}
                       </span>
@@ -132,21 +132,21 @@ export const WorkflowTimeline: React.FC = () => {
 
                     {/* Title & Description */}
                     <h3 className={`text-xl font-bold transition-colors ${
-                      isActive ? 'text-[#556447]' : 'text-[#1F2937]'
+                      isActive ? 'text-[#556447] dark:text-[#AEC89B]' : 'text-[#1F2937] dark:text-[#F3F6F2]'
                     }`}>
                       {step.title}
                     </h3>
-                    <p className="mt-3 text-sm text-[#4B5563] leading-relaxed">
+                    <p className="mt-3 text-sm text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
                       {step.description}
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-[#E2DFD8]/60 flex items-center justify-between text-xs text-[#6B7280]">
-                    <span className="font-medium text-[#1F2937]">{step.details}</span>
+                  <div className="mt-6 pt-4 border-t border-[#E2DFD8]/60 dark:border-[#27322A] flex items-center justify-between text-xs text-[#6B7280] dark:text-[#869485]">
+                    <span className="font-medium text-[#1F2937] dark:text-[#F3F6F2]">{step.details}</span>
                     {isActive ? (
-                      <span className="text-[10px] font-bold text-[#556447] bg-[#E8EDE3] px-2 py-0.5 rounded">Active</span>
+                      <span className="text-[10px] font-bold text-[#556447] dark:text-[#AEC89B] bg-[#E8EDE3] dark:bg-[#253228] px-2 py-0.5 rounded">Active</span>
                     ) : (
-                      <span className="text-[10px] text-[#9CA3AF]">Click</span>
+                      <span className="text-[10px] text-[#9CA3AF] dark:text-[#6B7280]">Click</span>
                     )}
                   </div>
                 </motion.div>
@@ -157,7 +157,7 @@ export const WorkflowTimeline: React.FC = () => {
 
         {/* Mobile & Tablet Vertical Timeline (below lg) */}
         <div className="lg:hidden mt-12 space-y-6 relative">
-          <div className="absolute top-6 bottom-6 left-6 w-1 bg-[#E2DFD8] rounded-full -z-0" />
+          <div className="absolute top-6 bottom-6 left-6 w-1 bg-[#E2DFD8] dark:bg-[#27322A] rounded-full -z-0" />
 
           {WORKFLOW_STEPS.map((step, index) => {
             const isActive = activeStepIndex === index;
@@ -175,29 +175,29 @@ export const WorkflowTimeline: React.FC = () => {
               >
                 {/* Node on Vertical Line */}
                 <div 
-                  className={`absolute left-0 top-0 w-12 h-12 rounded-xl flex items-center justify-center font-mono font-bold text-sm border-2 border-white shadow-xs transition-colors ${
-                    isActive ? 'bg-[#556447] text-white' : 'bg-[#E8EDE3] text-[#556447]'
+                  className={`absolute left-0 top-0 w-12 h-12 rounded-xl flex items-center justify-center font-mono font-bold text-sm border-2 border-white dark:border-[#181D1A] shadow-xs transition-colors ${
+                    isActive ? 'bg-[#556447] text-white' : 'bg-[#E8EDE3] dark:bg-[#253228] text-[#556447] dark:text-[#AEC89B]'
                   }`}
                 >
                   {step.step}
                 </div>
 
                 {/* Card Container */}
-                <div className={`bg-white rounded-2xl p-6 border transition-all ${
-                  isActive ? 'border-[#7C8F6A] shadow-md ring-2 ring-[#7C8F6A]/20' : 'border-[#E2DFD8] shadow-2xs'
+                <div className={`bg-white dark:bg-[#181D1A] rounded-2xl p-4 sm:p-6 border transition-all ${
+                  isActive ? 'border-[#7C8F6A] dark:border-[#8FA67C] shadow-md ring-2 ring-[#7C8F6A]/20 dark:ring-[#8FA67C]/20' : 'border-[#E2DFD8] dark:border-[#27322A] shadow-2xs'
                 }`}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280]">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] dark:text-[#869485]">
                       Phase 0{index + 1}
                     </span>
-                    <span className="text-xs font-semibold text-[#556447]">
+                    <span className="text-xs font-semibold text-[#556447] dark:text-[#AEC89B]">
                       {step.details}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-[#1F2937]">
+                  <h3 className="text-base sm:text-lg font-bold text-[#1F2937] dark:text-[#F3F6F2]">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-[#4B5563] leading-relaxed">
+                  <p className="mt-2 text-xs sm:text-sm text-[#4B5563] dark:text-[#A8B3A7] leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -209,7 +209,7 @@ export const WorkflowTimeline: React.FC = () => {
         {/* Interactive "Behind-the-Scenes Deep Dive" Drawer for Active Step */}
         <motion.div
           layout
-          className="mt-10 bg-white rounded-2xl border border-[#D3DCCB] p-6 sm:p-8 shadow-xs"
+          className="mt-8 sm:mt-10 bg-white dark:bg-[#181D1A] rounded-2xl border border-[#D3DCCB] dark:border-[#2E3C32] p-4 sm:p-8 shadow-xs"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -218,35 +218,35 @@ export const WorkflowTimeline: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-center"
             >
-              <div className="lg:col-span-8 space-y-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="px-3 py-1 rounded-md bg-[#556447] text-white text-xs font-bold font-mono">
+              <div className="lg:col-span-8 space-y-3.5 sm:space-y-4">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <span className="px-2.5 py-1 rounded-md bg-[#556447] dark:bg-[#253228] text-white dark:text-[#E8EDE3] text-xs font-bold font-mono">
                     Phase {activeStep.step}: {activeStep.title}
                   </span>
-                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#556447] bg-[#E8EDE3] px-2.5 py-1 rounded-md">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#556447] dark:text-[#AEC89B] bg-[#E8EDE3] dark:bg-[#1F2922] px-2.5 py-1 rounded-md">
                     <Clock className="w-3.5 h-3.5" />
                     Timeline: {activeDetail.timeline}
                   </span>
                 </div>
 
-                <p className="text-sm sm:text-base text-[#1F2937] italic font-medium leading-relaxed">
+                <p className="text-xs sm:text-base text-[#1F2937] dark:text-[#F3F6F2] italic font-medium leading-relaxed">
                   "{activeDetail.quote}"
                 </p>
 
-                <div className="flex items-start gap-2 pt-1 text-xs text-[#4B5563]">
-                  <FileCheck className="w-4 h-4 text-[#7C8F6A] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2 pt-1 text-xs text-[#4B5563] dark:text-[#A8B3A7]">
+                  <FileCheck className="w-4 h-4 text-[#7C8F6A] dark:text-[#8FA67C] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-[#1F2937]">Key Milestone Deliverable: </span>
+                    <span className="font-bold text-[#1F2937] dark:text-[#F3F6F2]">Key Milestone Deliverable: </span>
                     <span>{activeDetail.deliverable}</span>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 pt-1">
-                  <span className="text-xs font-bold text-[#6B7280]">Tools Deployed:</span>
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1">
+                  <span className="text-xs font-bold text-[#6B7280] dark:text-[#869485]">Tools Deployed:</span>
                   {activeDetail.tools.map((tool, i) => (
-                    <span key={i} className="text-xs px-2.5 py-1 rounded-md bg-[#F8F7F4] border border-[#E2DFD8] text-[#1F2937] font-medium">
+                    <span key={i} className="text-xs px-2.5 py-1 rounded-md bg-[#F8F7F4] dark:bg-[#141816] border border-[#E2DFD8] dark:border-[#27322A] text-[#1F2937] dark:text-[#F3F6F2] font-medium">
                       {tool}
                     </span>
                   ))}
@@ -258,7 +258,7 @@ export const WorkflowTimeline: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setActiveStepIndex((prev) => (prev + 1) % WORKFLOW_STEPS.length)}
-                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#1F2937] hover:bg-[#556447] text-white text-xs font-semibold transition-all shadow-xs cursor-pointer active:scale-98"
+                  className="min-h-[44px] flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#1F2937] dark:bg-[#8FA67C] hover:bg-[#556447] dark:hover:bg-[#9EBA8B] text-white dark:text-[#111413] text-xs font-semibold transition-all shadow-xs cursor-pointer active:scale-98"
                 >
                   <span>
                     {activeStepIndex === WORKFLOW_STEPS.length - 1 ? 'Start Over at Phase 01' : 'Next Phase'}
@@ -266,8 +266,8 @@ export const WorkflowTimeline: React.FC = () => {
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
 
-                <div className="flex items-center justify-center gap-1 text-[11px] text-[#6B7280]">
-                  <Sparkles className="w-3 h-3 text-[#7C8F6A]" />
+                <div className="flex items-center justify-center gap-1 text-[11px] text-[#6B7280] dark:text-[#869485]">
+                  <Sparkles className="w-3 h-3 text-[#7C8F6A] dark:text-[#8FA67C]" />
                   <span>Step {activeStepIndex + 1} of 4 in Zainab's Framework</span>
                 </div>
               </div>
